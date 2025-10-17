@@ -1,3 +1,7 @@
+---
+icon: fontawesome/solid/download
+---
+
 # 软件相关
 
 ## 怎样安装软件
