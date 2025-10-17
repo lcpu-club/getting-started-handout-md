@@ -53,6 +53,8 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.inlinehilite
   - pymdownx.keys
+  - pymdownx.arithmatex:
+      generic: true
   - abbr
   - pymdownx.snippets:
       auto_append:
@@ -96,3 +98,7 @@ markdown_extensions:
 #  - PROJECT:
 #      - "./PROJECT/project.md"
 #      - TECH-BLOG: "./PROJECT/TECH-BLOG/mkdocs_and_material.md"
+
+extra_javascript:
+  - js/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
