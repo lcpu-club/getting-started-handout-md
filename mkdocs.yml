@@ -1,5 +1,5 @@
 site_name: PKU计算机基础能力手册
-repo_url: https://github.com/lcpu-club/getting-started-handout-md/
+repo_url: https://github.com/lcpu-club/getting-started-handout-md
 theme:
   name: zensical
   variant: modern

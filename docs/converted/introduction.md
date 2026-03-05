@@ -32,44 +32,44 @@ icon: material/book-open-page-variant
 
 - 之前完全没接触过计算机，希望能自己装个软件、写个 Hello World：
 
-  1. 入门认知：见 `chap:usage`，学会怎么用键盘、怎么管理文件；
-  2. 系统和软件：见 `chap:install-software`，学会装个软件；
-  3. 编程入门：见 `chap:coding`，配好开发环境；
-  4. 写第一个程序：见 `chap:c-guidance` 或 `chap:python-guidance`，写出第一个 Hello World。
+  1. 入门认知：见 [初步使用计算机](book2/03-usage.md)，学会怎么用键盘、怎么管理文件；
+  2. 系统和软件：见 [系统安装、基础配置和软件生态](book2/02-install-software.md)，学会装个软件；
+  3. 编程入门：见 [正式踏入编程世界](book4/01-coding.md)，配好开发环境；
+  4. 写第一个程序：见 [C语言入门](book4/02-c-guidance.md) 或 [Python高速入门](book4/05-python-guidance.md)，写出第一个 Hello World。
 
 - 希望能简单学点脚本，写点小程序，能用 Git 管理代码和论文，用 LaTeX 等工具写点东西：
 
-  1. 入门认知：见 `chap:install-software` 和 `chap:usage`，学会装个软件，学会怎么用键盘、怎么管理文件；
-  2. 写作工具：见 `sec:latex` 和 `sec:latex-advanced`，学会用 LaTeX 写论文；
-  3. 脚本自动化：见 `chap:coding`、`chap:python-guidance` 和 `chap:python-advanced`，学会用 Python 写点小程序、脚本，能画出漂亮的数据分析图表；
-  4. 版本管理：见 `sec:git`，学会用 Git 管理代码和论文，防止写坏或丢失。
+  1. 入门认知：见 [系统安装、基础配置和软件生态](book2/02-install-software.md) 和 [初步使用计算机](book2/03-usage.md)，学会装个软件，学会怎么用键盘、怎么管理文件；
+  2. 写作工具：见 [LaTeX](tools/02-latex.md) 和 [LaTeX 进阶](tools/03-latex-advanced.md)，学会用 LaTeX 写论文；
+  3. 脚本自动化：见 [正式踏入编程世界](book4/01-coding.md)、[Python高速入门](book4/05-python-guidance.md) 和 [Python常用包](book4/06-python-packages.md)，学会用 Python 写点小程序、脚本，能画出漂亮的数据分析图表；
+  4. 版本管理：见 [Git与版本控制](book5/01-git-github.md)，学会用 Git 管理代码和论文，防止写坏或丢失。
 
 - 希望能写脚本、画图、跑模型，用 Linux 做实验，能用 Git 管理代码和论文：
 
-  1. 快速上手：见 `chap:usage` 和 `chap:coding`，学会 VS Code 写 Python、虚拟环境装包跑脚本；
-  2. 写作工具：见 `sec:latex` 和 `sec:latex-advanced`，学会用 LaTeX 等工具写论文；
-  3. 数据处理：见 `chap:python-guidance` 和 `chap:python-advanced`，学会用 Python 写点小程序、脚本，能画出漂亮的数据分析图表；
-  4. Linux 环境：见 `sec:terminal` 和 `chap:linux`，学会用 Linux 做实验，会用终端加速工作；
-  5. 进阶玩法：见 `sec:git` 和 `chap:debugging`，学会用 Git 管理代码和论文，防止写坏或丢失，也能把别人的代码拿下就跑起来。
+  1. 快速上手：见 [初步使用计算机](book2/03-usage.md) 和 [正式踏入编程世界](book4/01-coding.md)，学会 VS Code 写 Python、虚拟环境装包跑脚本；
+  2. 写作工具：见 [LaTeX](tools/02-latex.md) 和 [LaTeX 进阶](tools/03-latex-advanced.md)，学会用 LaTeX 等工具写论文；
+  3. 数据处理：见 [Python高速入门](book4/05-python-guidance.md) 和 [Python常用包](book4/06-python-packages.md)，学会用 Python 写点小程序、脚本，能画出漂亮的数据分析图表；
+  4. Linux 环境：见 [终端101](book3/01-shell-101.md) 和 [开始使用 Linux](book3/02-linux.md)，学会用 Linux 做实验，会用终端加速工作；
+  5. 进阶玩法：见 [Git与版本控制](book5/01-git-github.md) 和 [调试、测试和部署](book5/04-debugging.md)，学会用 Git 管理代码和论文，防止写坏或丢失，也能把别人的代码拿下就跑起来。
 
 - 计算机相关专业学生：**我认为应该通读大部分**：
 
-  1. 基础打底：见 `sec:terminal` 和 `chap:linux`，学会 Linux、终端、WSL 等基础知识，为后续开发打好基础；
-  2. 编程入门：见 `chap:coding`、`chap:c-guidance`、`chap:cpp-1`、`chap:cpp-2`、`chap:cpp-3`、`chap:python-guidance` 和 `chap:python-advanced`，学会配 VS Code、调试、写 C/C++ 和 Python，能写出较高质量的代码；
-  3. 工程能力：见 `chap:cpp-project`、`sec:git`、`chap:pragmatic-coding`，学会写 CMake，用 Git，多人协作；
-  4. 系统原理：见 `chap:ics-1`、`chap:ics-2` 和 `chap:ics-3`，即使不学 ICS，作为信科学生也应该了解计算机的基本原理；
-  5. 进阶玩法：见 `chap:secret-key` + `chap:debugging`，学会远程开发、签名、调试等进阶工程技能。
+  1. 基础打底：见 [终端101](book3/01-shell-101.md) 和 [开始使用 Linux](book3/02-linux.md)，学会 Linux、终端、WSL 等基础知识，为后续开发打好基础；
+  2. 编程入门：见 [正式踏入编程世界](book4/01-coding.md)、[C语言入门](book4/02-c-guidance.md)、[从C到C++](book4/03-cpp-guidance-1.md)、[C++进阶](book4/03-cpp-guidance-2.md)、[C++真理大讨论](book4/03-cpp-guidance-3.md)、[Python高速入门](book4/05-python-guidance.md) 和 [Python常用包](book4/06-python-packages.md)，学会配 VS Code、调试、写 C/C++ 和 Python，能写出较高质量的代码；
+  3. 工程能力：见 [C系工程概述](book4/04-cpp-project.md)、[Git与版本控制](book5/01-git-github.md)、[实用主义编程](book5/03-pragmatic-coding.md)，学会写 CMake，用 Git，多人协作；
+  4. 系统原理：见 [信息表示和机器级代码](book6/01-binary.md)、[内存缓存管理和系统调用](book6/02-memory.md) 和 [计算机的启动和输入输出](book6/03-boot-io-network.md)，即使不学 ICS，作为信科学生也应该了解计算机的基本原理；
+  5. 进阶玩法：见 [密钥与远程](book5/02-secret-key.md) + [调试、测试和部署](book5/04-debugging.md)，学会远程开发、签名、调试等进阶工程技能。
 
 - OIer 快速过渡到大学工程开发环境，避免“只会写算法不会写项目”：
 
-  1. 环境过渡：见 `chap:coding`、`chap:c-guidance`、`chap:cpp-1`、`chap:cpp-2`、`chap:cpp-3`，学会用 VS Code 写现代的 C++，学会用 CMake 管理项目，杜绝 Fake C++（C with classes）；
-  2. 工程规范：见 `sec:git`、`chap:pragmatic-coding`，学会用 Git 管理代码，学会调试程序、规范代码，提升代码质量；
-  3. 走向 Linux：见 `sec:terminal`、`chap:linux` 以及 `chap:secret-key`，学会在 Linux 下开发，学会远程开发，适应大学的开发环境；
-  4. 进阶可选：见 `chap:ics-1`、`chap:ics-2`、`chap:ics-3` 以及 `chap:multitask`，了解计算机的基本原理和多线程编程。这前提是你想打底层、系统或科研，或者更先进的算法竞赛（如 HPC 竞赛）。
+  1. 环境过渡：见 [正式踏入编程世界](book4/01-coding.md)、[C语言入门](book4/02-c-guidance.md)、[从C到C++](book4/03-cpp-guidance-1.md)、[C++进阶](book4/03-cpp-guidance-2.md)、[C++真理大讨论](book4/03-cpp-guidance-3.md)，学会用 VS Code 写现代的 C++，学会用 CMake 管理项目，杜绝 Fake C++（C with classes）；
+  2. 工程规范：见 [Git与版本控制](book5/01-git-github.md)、[实用主义编程](book5/03-pragmatic-coding.md)，学会用 Git 管理代码，学会调试程序、规范代码，提升代码质量；
+  3. 走向 Linux：见 [终端101](book3/01-shell-101.md)、[开始使用 Linux](book3/02-linux.md) 以及 [密钥与远程](book5/02-secret-key.md)，学会在 Linux 下开发，学会远程开发，适应大学的开发环境；
+  4. 进阶可选：见 [信息表示和机器级代码](book6/01-binary.md)、[内存缓存管理和系统调用](book6/02-memory.md)、[计算机的启动和输入输出](book6/03-boot-io-network.md) 以及 [现代高性能并发编程：异步、多进程和多线程](advanced/multitask.md)，了解计算机的基本原理和多线程编程。这前提是你想打底层、系统或科研，或者更先进的算法竞赛（如 HPC 竞赛）。
 
-- 纯装机，想买台新电脑，希望一条龙搞好新机、配好开发环境：见 `chap:buy-and-check`、`chap:install-software`、`chap:coding`，下午拿到新电脑，晚上就搞好开发环境，第二天就能提着新电脑去上课。
-- 有篇论文想投稿，内容都想好了，但不会用 LaTeX 排版：见 `sec:latex` 和 `sec:latex-advanced`，学会用 LaTeX 写论文，搞定投稿格式，一周学完语法，顺便论文也排好。
-- “先跑 AI 再说”极速路线：`sec:conda`（miniconda）-> `sec:pytorch`（PyTorch）-> `sec:pandas`（Pandas）-> `sec:docker`（Docker 轻量化），搞定 AI 环境，直接跑模型。
+- 纯装机，想买台新电脑，希望一条龙搞好新机、配好开发环境：见 [计算机的硬件、购机与验机](book2/01-buy-and-check.md)、[系统安装、基础配置和软件生态](book2/02-install-software.md)、[正式踏入编程世界](book4/01-coding.md)，下午拿到新电脑，晚上就搞好开发环境，第二天就能提着新电脑去上课。
+- 有篇论文想投稿，内容都想好了，但不会用 LaTeX 排版：见 [LaTeX](tools/02-latex.md) 和 [LaTeX 进阶](tools/03-latex-advanced.md)，学会用 LaTeX 写论文，搞定投稿格式，一周学完语法，顺便论文也排好。
+- “先跑 AI 再说”极速路线：[Python常用包](book4/06-python-packages.md)（miniconda）-> [Python常用包](book4/06-python-packages.md)（PyTorch）-> [Python常用包](book4/06-python-packages.md)（Pandas）-> [Python常用包](book4/06-python-packages.md)（Docker 轻量化），搞定 AI 环境，直接跑模型。
 
 希望第二版会比第一版对同学们更有帮助。
 
