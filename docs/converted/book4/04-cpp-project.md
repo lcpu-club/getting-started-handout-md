@@ -1,0 +1,902 @@
+---
+icon: material/puzzle-outline
+---
+# C系工程概述
+
+
+C和C++虽然古老且写起来不太舒服，但是在今天依然是非常重要的编程语言。C和C++的性能极高，能够直接操作内存，并且有着丰富的库和工具支持，因此在系统编程、嵌入式开发、游戏开发等领域仍然有着广泛的应用；时至今日，C++和C在编程语言使用的广泛程度上依然仅次于Python，分列第二和第三位。因此，学习其开发相关知识依然是非常有必要的。
+
+而工程上，最重要的问题是：如何管理依赖、如何构建项目。C和C++的包管理和构建系统一直是一个痛点，本文将介绍一些常用的包管理器和构建系统，帮助大家更好地进行C和C++的开发。
+
+## C系包管理[^1]
+
+
+2024学年初期，我被我某节课的助教邀请，帮助他的恋人配置C++开发环境与调包。当时我调了一晚上也没调好，彻底意识到为C++调包是极为痛苦的体验：C++包管理做得很烂，和Python的包管理难度相比，简直是一个天上一个地下。
+
+最近，这个问题再度被同学们提出。我认为，在很多课程上使用C++编写项目的时候，也逃不开使用包（但是很多课程并不提及怎么装包）；为了防止同学们在使用C++包时遇到不必要的麻烦，我决定写一章来介绍C++的包管理。
+
+当然，每一个包都有着自己推荐的安装方式。如果官方文档等有自己推荐的安装方式，建议同学们优先使用官方推荐的方式安装包。另一方面，C++的上限极高，但是下限也极低，很多包的文档质量极差，甚至没有文档；因此，本文也会介绍一些通用的安装方式。（当然这种文档很差的包，往往质量也堪忧！）
+
+实际上C++包管理的最好方式是：USE RUST INSTEAD！（大嘘）
+
+### C++包管理的困境和现状
+
+
+虽然我们C++有一定的标准协会（ISO C++），但是C++没有官方的运行时（Runtime）。这导致C++的ABI随着编译器、版本、编译选项而随地大小变，导致二进制包必须严丝合缝。
+
+简单说来，C++装库主要任务有三项：找到头文件、找到库文件、让构建系统知道它们在哪。头文件指的是C++的头文件（.h、.hpp等），库文件指的是编译好的二进制文件（.so、.dll、.a等）。由于二十多年来没有一个官方组织来统一C++的包管理、大家习惯自己编译，因此逐渐形成了两种互相不重叠的技术路线：
+
+- 手动装
+- 使用包管理器
+
+
+### 手动装
+
+
+手动装是最原始的方式，要么从源代码编译，要么从二进制包安装。手动装的好处是可以完全控制安装的版本和配置，坏处是需要手动处理依赖关系和路径问题，并且容易出错。不过，其他的方式最终还是依赖于手动装的过程，只不过脏活累活有自动化工具帮你做了；另一方面，手动装包也是最通用的方式，在包管理器上没有找到包时，手动装包几乎是唯一的选择。
+
+#### 手动编译
+
+
+手动编译的过程通常是：先从官网下载源代码，然后编译：
+```bash
+git clone https://github.com/fmtlib/fmt.git
+cmake -S fmt -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+cmake --build build
+sudo cmake --install build --prefix /opt/fmt
+```
+
+
+然后使用CMake配置编译器的搜索路径：
+```cmake
+    find_package(fmt REQUIRED)
+    target_link_libraries(my_program PRIVATE fmt::fmt)
+```
+
+
+完毕。以上方式是一种最通用的手动安装方式之一，也很容易适用于其他包。需要注意的是，CMake的find_package命令会在系统的标准路径下查找包，因此如果你将包安装在非标准路径下，需要手动指定搜索路径等。
+
+#### 头文件库
+
+
+这种安装方式适宜用于一些小型的库。只需要将头文件放在项目目录（ `third_party/` ）下，然后在CMake中添加头文件搜索路径即可：
+```cmake
+    add_subdirectory(third_party/nlohmann_json)
+    target_include_directories(my_program PRIVATE third_party/nlohmann_json)
+```
+
+
+完毕。以上方式是“把依赖当源码”的极限版本，没有ABI问题，但是需要手动处理依赖关系和版本问题等。
+
+### 使用包管理器
+
+
+包管理器实际上是一种自动化的手动装方式。它们通常会提供一个统一的命令行工具，来管理包的安装、卸载、更新等操作。许多包都可以使用这种方式安装，且包管理器通常会处理依赖关系和路径问题。
+
+#### 系统级包管理器
+
+
+对于特定的操作系统或开发环境，使用其自带的包管理器是安装C++库最直接的方式。无论是Linux（如APT、DNF、Pacman）、macOS（如Homebrew），还是 Windows上的MSYS2环境都提供了强大的包管理工具。当你的开发环境和目标部署环境一致时，系统级包管理器通常是最佳选择。
+
+以安装 `fmt` 库为例，不同平台上的命令如下：
+
+
+- **Debian/Ubuntu (APT)**:
+```bash
+sudo apt install libfmt-dev
+```
+
+- **Fedora (DNF/YUM)**:
+```bash
+sudo dnf install fmt-devel
+```
+
+- **Arch Linux (Pacman)**:
+```bash
+sudo pacman -S fmt
+```
+
+- **macOS (Homebrew)**:
+```bash
+brew install fmt
+```
+
+- **Windows (MSYS2/MinGW)**: 在 MSYS2 环境下，同样可以使用  `pacman` 。
+```bash
+pacman -S mingw-w64-ucrt-x86_64-fmt
+```
+
+
+
+安装后，这些库通常会被放置在系统的标准路径下（如 `/usr/include` 和 `/usr/lib` ）。构建系统（如CMake等）通过 `find_package` 命令可以轻松地找到它们，无需额外配置：
+```cmake
+find_package(fmt REQUIRED)
+target_link_libraries(my_program PRIVATE fmt::fmt)
+```
+
+
+这样装的优势有以下几点：
+
+- 一条命令即可完成安装，自动处理复杂的依赖关系。
+- 库文件和头文件被安装到标准位置，构建系统可以自动发现，无需手动配置路径。
+- 可以与其他系统软件一同通过包管理器进行更新和维护。
+- 发行版仓库中的库经过测试，通常与系统中的其他组件（如编译器）兼容性良好。
+
+
+这样装的缺点也很明显：
+
+- 仓库中的库版本未必能满足所有需求。如果你的项目需要某个库的最新特性，或者依赖于一个非常特定的旧版本，某些包管理器可能无法满足需求。
+- 不同平台、不同发行版的包管理器命令和包名各不相同，往往需要手动核验与对应。
+- 不是所有的 C++ 库都被收录到了官方仓库中，尤其是那些比较小众或新兴的库。
+
+
+#### vcpkg
+
+
+vcpkg是微软开发的C++包管理器。我们建议在Windows使用这个包管理器，因为它可以很好地与Visual Studio集成。vcpkg的使用方式非常简单，首先应当安装vcpkg（过程略）。
+
+然后在项目中添加vcpkg的CMake配置：（你应当把示例路径替换为你自己安装vcpkg的实际路径）
+```bash
+    cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake
+```
+
+下一步声明依赖 `vcpkg.json` 文件：
+```json
+    {
+        "name": "demo",
+        "version": "0.1.0",
+        "dependencies": [
+            "fmt",
+            "nlohmann-json"
+        ]
+    }
+```
+
+这样，在CMake构建文件的时候就会自动下载源码并编译出*.a或者*.so等文件，并且将它们放在build的相关目录下。
+
+vcpkg的好处是源码优先（可以切换triplet）、不和系统冲突；坏处是仅能支持CMake项目。
+
+#### Conan
+
+
+Conan是一个跨平台的C++包管理器，支持多种构建系统，包括CMake、Makefile等。Conan的使用方式也很简单：
+```bash
+    pip install conan # 安装Conan
+    conan profile detect --force # 检测当前系统配置并生成配置文件
+```
+
+然后在项目中添加Conan的配置文件（conanfile.txt）：
+```text
+    [requires]
+    fmt/9.0.0
+    nlohmann_json/3.11.2
+
+    [generators]
+    CMakeDeps
+    CMakeToolchain
+```
+
+然后构建：
+```bash
+    conan install . --build=missing -s build_type=Release
+    cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake
+```
+
+
+Conan的好处是支持多种构建系统和平台，包括makefile、meson、bazel等；二进制包仓库丰富；支持版本锁定等。但是缺点是conanfile和CMakeLists.txt文件需要手动维护和同步买比较麻烦。
+
+#### conda-forge
+
+
+conda-forge也能管理C++包：
+```bash
+    conda install -c conda-forge fmt nlohmann_json
+```
+
+当然conda做这个还是有些大材小用了。
+
+讲完了开发的各个方面，现在该讲讲怎么把你的代码构建成可执行的文件（或包），以便于之后的发布和使用。
+
+一个比较古老的构建方法是使用 `makefile` 构建，这是非常经典的构建方式，几乎所有的编程语言都可以使用。但是因为风格过老，现在已经不大流行。目前较为常见的构建方式是 `CMake` 和 `XMake` ，它们风格现代，功能强大。
+
+## CMake
+
+
+C系语言功能非常强大是公认的不争事实。但是它的构建一直是一个巨大的痛点：使用include来链接库是非常麻烦的事情，文件一多，gcc直接变成一种折磨（ `gcc a.c b.c ... -o project` ，还得管依赖关系，还得管编译顺序），困难得让人完全不想用。
+
+在2000年左右，CMake作为一个跨平台的构建工具被提出。它的主要目标是提供一个简单的方式来管理大型项目的构建过程。在当时，autotools难写，Makefile难以跨平台，而CMake“描述意图”代替“描述过程”，使得构建过程变得更简单。
+
+好风凭借力。随着CMake渐渐进入人们的视野，KDE、LLVM、OpenCV、Qt6、ROS2等项目全都开始使用CMake作为构建工具，社区生态空前繁荣，直接将CMake推上了构建工具的顶峰。直到现在，CMake依然是面向生产环境的“事实标准”，VS、CLion、QtCreator、VS Code全部将CMake作为一级公民，GH Actions、Docker、Conan、vcpkg无需装包，默认识别CMake项目。
+
+因此，不学会CMake，你在今日的开发世界中寸步难行：除非你愿意用Makefile这种玩意为每个IDE和平台写一大堆构建脚本！
+
+### 最小运行实例
+
+
+CMake的文件名称默认是 `CMakeLists.txt` 。除非特殊情况，以后不再提及文件名称。
+
+#### 单一文件
+
+
+假设现在存在一个 `main.cpp` 文件（不管内容是什么了）。在同一目录下新建一个CMake文件，内容如下：
+
+```cmake
+cmake_minimum_required(VERSION 3.10) # 声明最低CMake版本
+project(hello LANGUAGES CXX) # 声明项目名称和使用的语言
+add_executable(hello main.cpp) # 声明可执行文件hello，源文件为main.cpp
+```
+
+
+然后构建：
+```bash
+    cmake -B build # 生成构建系统
+    cmake --build build # 构建
+    ./build/hello # 运行可执行文件（Linux和mac）
+    ./build/Debug/hello.exe # 运行可执行文件（Windows）
+```
+
+
+爽。
+
+#### 多个目录
+
+
+假设现在有一个目录结构：
+```text
+src/
+- main.cpp
+- math/
+    - add.cpp
+    - add.hpp
+- io/
+    - print.cpp
+    - print.hpp
+```
+
+
+根目录CMake文件如下：
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(multidir)
+
+add_subdirectory(src) # 告诉CMake：src里面还有东西
+```
+
+
+src/CMake文件如下：
+```cmake
+    add_library(math STATIC math/add.cpp) # 声明静态库math，源文件为add.cpp
+    add_library(io STATIC io/print.cpp) # 声明静态库io，源文件为print.cpp
+    add_executable(app main.cpp) # 声明可执行文件app，源文件为main.cpp
+    target_link_libraries(app PRIVATE math io) # 将math和io库链接到app
+```
+
+
+构建同单文件一样，不打第二遍。
+
+我们看到一个问题：CMake需要每个目录一个，职责清晰；同时，库和可执行文件都是“目标”。目标这个词在CMake中非常重要，几乎所有的操作都是针对目标进行的，后文会反复出现。
+
+### 语法
+
+
+#### 目标和作用域
+
+
+现代的CMake的语法基于目标，把属性贴在目标上，谁链接谁可见。比如说：
+```cmake
+add_library(foo STATIC foo.cpp) # 告诉CMake，这有个库foo，是静态的
+target_include_directories(foo PUBLIC include) # foo库的头文件在include目录下
+target_compile_features(foo PUBLIC cxx_std_20) # foo库需要C++20特性
+target_link_libraries(foo PUBLIC bar) # foo库需要链接bar库
+```
+
+
+这里的 `PUBLIC` 是一个作用域，表示这个属性对链接到foo的目标可见。作用域有三个：
+
+- `PRIVATE` ：给自己用
+- `INTERFACE` ：给下游用，自己不用
+- `PUBLIC` ：自己和下游都用
+
+
+一般情况下，除非显式传递，否则子目录自动继承父目录作用域；而对于一个特定的目标，属性自动跟随，跨目录也能传递。类似 `link_directories` 这样的命令是全局的命令，在现代CMake中非常不推荐使用。
+
+#### 变量、缓存、生成器
+
+
+对于CMake而言，我们可以声明一些变量，使得CMake源码更简洁。例如：
+```cmake
+    set(SOURCE_FILES main.cpp math/add.cpp io/print.cpp) # 声明变量SOURCE_FILES
+    add_executable(app ${SOURCE_FILES}) # 使用变量
+```
+
+这样可以省去很多重复的代码。
+
+CMake的变量分为两种：缓存变量和普通变量。普通变量用户是修改不了的，而缓存变量可以通过命令行或CMake GUI修改。缓存变量通常用于配置选项，比如：
+```cmake
+option(BUILD_TESTS "Build tests" ON) # 声明一个缓存变量BUILD_TESTS，默认值为ON
+set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Build type") # 声明一个缓存变量CMAKE_BUILD_TYPE，默认值为Release
+```
+
+
+用户可以修改这些缓存变量的值，以定制构建过程。
+```bash
+cmake -B build -DBUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Debug # 修改缓存变量，将BUILD_TESTS设置为OFF，将CMAKE_BUILD_TYPE设置为Debug
+```
+
+
+生成器决定了CMake生成的构建系统类型。CMake支持多种生成器，比如Makefile、Ninja、Visual Studio等。可以通过 `-G` 选项指定生成器。目前较为常见的生成器有：
+
+
+- `Ninja` ：一个快速的构建系统，CMake默认生成的构建系统。跨平台最快。
+- `UNIX Makefiles` ：传统的Makefile生成器，Linux服务器默认。
+- `Visual Studio` ：Windows下的Visual Studio生成器。
+- `Xcode` ：macOS下的Xcode生成器。
+
+使用这些生成器非常简单：
+```bash
+cmake -B build -G Ninja # 使用Ninja生成器
+```
+
+
+#### 条件判断、执行命令、输出信息
+
+
+在CMake中，我们可以使用条件判断来控制构建过程。这在使用了缓存变量的时候非常有用：
+```cmake
+if(BUILD_TESTS) # 如果BUILD_TESTS为真
+    enable_testing() # 启用测试
+    add_subdirectory(tests) # 添加tests目录
+endif() # 结束条件判断
+```
+
+
+这个if的条件写法和C++的if类似，也可以写 `elseif()` （没有空格）和 `else()` ，含义也相同；但是不支持运算符。所有的运算符都应该用字符串表示：
+
+- AND、OR、NOT：御三家，不用解释都知道这是什么
+- EQUAL、LESS、GREATER：比较运算符，分别表示等于、小于、大于
+- EXIST：后面的东西（绝对路径）若存在，则为真；否则为假
+- DEFINED：后面的变量若已定义，则为真；否则为假
+- COMMAND：后面的命令（宏、函数）若存在并能执行，则为真；否则为假
+- STREQUAL、STRLESS、STRGREATER：字符串比较运算符，分别表示等于、小于、大于。使用前提是字符串必须是有效的数字。
+
+
+我们可以使用 `execute_process` 命令来执行外部命令：
+```cmake
+execute_process(COMMAND echo "Hello, World!" OUTPUT_VARIABLE output RESULT_VARIABLE result) # 执行命令，输出到output变量，结果状态码到result变量
+```
+
+一次可以同时执行许多命令，这些命令是并行的；每一个子进程的标准输出都会映射到下一个进程的标准输入；所有的子进程公用一个标准错误输出管道。除了COMMAND外，其余关键字均可以省略。
+
+有时候，我们需要输出一些信息到控制台上（例如错误信息等）。CMake提供了 `message` 命令来输出信息：
+```cmake
+message(STATUS "This is a status message") # 输出状态信息
+message(WARNING "This is a warning message") # 输出警告信息
+message(ERROR "This is an error message") # 输出错误信息
+message(FATAL_ERROR "This is a fatal error message") # 输出致命错误信息并终止构建
+```
+
+
+#### 列表
+
+
+CMake支持列表（list）。列表一般需要使用set来定义。以下是一些常用的列表操作命令：
+```cmake
+set(SOURCES main.cpp math/add.cpp io/print.cpp) # 定义一个列表SOURCES
+list(APPEND SOURCES io/scan.cpp) # 向列表SOURCES添加一个元素
+list(REMOVE_ITEM SOURCES io/scan.cpp) # 从列表SOURCES中移除一个元素
+list(LENGTH SOURCES length) # 获取列表SOURCES的长度，存储到length
+list(GET SOURCES 0 first) # 获取列表SOURCES的第一个元素，存储到first
+list(SORT SOURCES) # 对列表SOURCES进行排序
+list(FIND SOURCES main.cpp index) # 查找列表SOURCES中元素main.cpp的位置，存储到index
+list(INSERT SOURCES 0 "io/scan.cpp") # 在列表SOURCES的开头插入元素io/scan.cpp
+list(JOIN SOURCES ", " joined) # 将列表SOURCES用逗号和空格连接成一个字符串，存储到joined
+```
+
+
+基本上是所见即所得。可以看到，列表操作和C++ STL的vector类似。
+
+#### 调库
+
+
+有时候我们需要调外部库，例如OpenCV等。我们把调库分为两种：系统库和第三方库。
+
+如果系统已经安装，使用 `find_package` 命令即可：
+```cmake
+find_package(fmt REQUIRED) # 查找fmt库，REQUIRED表示必须找到
+target_link_libraries(app PRIVATE fmt::fmt) # 将fmt库链接到app
+```
+
+上述提到的 `fmt` 库是一个常用的C++格式化库，Linux发行版可以通过包管理器安装（例如Ubuntu的 `apt install libfmt-dev` ）。
+
+如果系统没安装，则需要使用FetchContent来当场下载。FetchContent是CMake 3.11引入的模块。示例代码如下：
+```cmake
+include(FetchContent) # 引入FetchContent模块
+FetchContent_Declare(
+    googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG ? # 指定版本，这里没有指定，实际应当指定一个
+)
+FetchContent_MakeAvailable(googletest) # 下载并编译googletest库
+```
+
+FetchContent会自动下载并编译googletest库，并将其链接到当前项目。这样构建的好处是不需要预装库，直接构建时下载并编译，适合CI/CD等场景。缺点：首次编译时间长。
+
+除此之外，CMake还支持使用Conan、vcpkg等包管理器来管理第三方库。Conan和vcpkg都是非常流行的C++包管理器，可以自动处理依赖关系和版本问题。
+```bash
+    vcpkg install fmt # 使用vcpkg安装fmt库
+    cmake -B build -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake # 使用vcpkg的CMake工具链文件
+```
+
+vcpkg会将库链接到当前项目，例如上文会将fmt::fmt暴露给 `find_package` 。
+
+### 工具链
+
+
+工具链文件（ToolChain文件）是一段纯粹的CMake脚本，在project命令之前被CMake加载，用于通知当前线索的重要信息：目标平台是什么？使用什么交叉编译器？头文件什么的在哪？默认编译、链接flags是什么？
+
+闲的没事的人可以使用cmake -D一个个传。这么做最大的问题是：太多了，先不说传错、传漏的可能性，光说脚本的可读性就够我们喝一壶了。
+
+假设我们现在希望在Linux机器上编译一个Win32程序，那么工具链文件可以是这样的：
+```cmake
+# 文件名：cross-mingw.cmake
+# 1. 目标系统
+set(CMAKE_SYSTEM_NAME Windows)        # 告诉 CMake “我要生成 Windows PE”
+set(CMAKE_SYSTEM_PROCESSOR i686)      # 目标 CPU
+
+# 2. 交叉编译器
+set(CMAKE_C_COMPILER   i686-w64-mingw32-gcc)
+set(CMAKE_CXX_COMPILER i686-w64-mingw32-g++)
+
+# 3. sysroot / 搜索根目录
+set(CMAKE_FIND_ROOT_PATH /usr/i686-w64-mingw32)
+
+# 4. 查找策略：头文件/库只在目标环境里找，可执行程序在宿主环境里找
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+```
+
+之后编译：
+```bash
+cmake -B build-win -DCMAKE_TOOLCHAIN_FILE=cross-mingw.cmake
+cmake --build build-win
+./build-win/hello.exe # 运行可执行文件
+```
+
+上述代码会在Linux上编译一个Win32程序，但是可以直接拷贝到Windows上运行。
+
+当然，这只是一个最基本的示例，实际上工具链的使用相当复杂，甚至超过了CMake本身的复杂度。但是，交叉编译的脏活累活全是它做的，正是工具链的使得我们无需使用一大堆 `-D` 参数来传递信息。因此将来如果有的同学有志于从事嵌入式开发等工作，建议还是去官方网站上学习一下工具链的使用。
+
+### 安装、导出、打包
+
+
+CMake支持安装、导出和打包功能。安装功能可以将构建好的目标安装到指定目录，导出功能可以将目标导出为一个CMake包，打包功能可以将目标打包为一个可分发的文件。
+
+安装功能使用 `install` 命令：
+```cmake
+install(TARGETS foo EXPORT fooTargets # 安装foo目标，并导出为fooTargets
+    RUNTIME DESTINATION bin # 可执行文件安装到bin目录
+    LIBRARY DESTINATION lib # 动态库安装到lib目录
+    ARCHIVE DESTINATION lib # 静态库安装到lib目录
+)
+install(DIRECTORY include/ DESTINATION include) # 头文件安装到include目录
+```
+
+
+导出功能使用 `export` 命令：
+```cmake
+install(EXPORT fooTargets
+    FILE foo-config.cmake
+    NAMESPACE foo::
+    DESTINATION lib/cmake/foo) # 导出fooTargets为foo-config.cmake文件，命名空间为foo::
+```
+
+导出后下游项目可以直接 `find_package(foo REQUIRED)` 来使用foo库。
+
+打包功能使用 `cpack` 命令：
+```cmake
+set(CPACK_GENERATOR "DEB")
+set(CPACK_PACKAGE_NAME "mylib")
+include(CPack)
+```
+
+上述代码会生成一个DEB包，包名为mylib。构建的时候，使用以下命令可以得到打包文件：
+```bash
+cmake --build build --target package # 构建并打包
+```
+
+
+### 常见坑
+
+CMake虽然强大，但也有一些常见的坑需要注意：
+
+- 缓存残留：目录改了名，CMake仍然记得旧值，这时候把整个build目录全删了就可以了。
+- 找不到头文件：看看target_include_directories是否正确设置了作用域，八成是错写成了 `PRIVATE` 。
+- 找不到dll（Windows特供）：把bin目录加入PATH，或者运行以下命令后运行 `install/ bin` 下的可执行文件：
+```bash
+    cmake --install build --prefix install
+```
+
+- 生成器表达式看不懂：在在 CMakeLists 里  `message(STATUS "$<TARGET_FILE:foo>")`  打印调试。
+
+
+以上内容仅仅是给CMake的一个概览。虽然可以让同学们理解CMake的基本用法，但要深入使用CMake，还是需要阅读官方文档和相关教程。毕竟CMake的命令非常多（就一个 `execute_process` 就有一大堆选项，合起来能占满半个屏幕），而且每个命令的用法也非常灵活。
+
+这里帮各位把[CMake官方说明文档](https://cmake.org/cmake/help/latest/guide/tutorial/)贴出来了，感兴趣的同学可以去看看；也可以看看这本电子书：Professional CMake: A Practical Guide（作者：Craig Scott），这本书是CMake的权威指南，内容非常全面，适合深入学习CMake。
+
+## XMake
+
+
+不少同学可能会疑惑：怎么又来一个XMake？
+
+这是因为，CMake虽然已经很好了，但是语法还是有些复杂，有点像“外星语”。而XMake比CMake现代的多，语法也更简单，使用lua脚本而不是CMake特有的脚本，更容易上手。同时，XMake把CMake的configure、generate、build等步骤压成一步，且自带包管理，非常舒适。当然，也因为它太新了，所以大多数情况下使用CMake已经可以满足需求了；不过在这里我还是简单讲一下吧，毕竟PKU的部分课程提供的引擎需要我们手写XMake脚本。
+
+安装非常简单，包管理器直接解决，不管用的winget还是apt，都可以直接安装XMake：
+```bash
+winget install xmake # Windows
+apt install xmake # Ubuntu
+brew install xmake # macOS
+```
+
+
+### 最小运行实例
+
+
+XMake的构建文件名称默认是 `xmake.lua` ，本章不再赘述。
+
+运行以下命令看看模板：
+```bash
+xmake create -l c++ hello # 创建一个C++项目hello
+xmake create -l c++ -t static hello_lib # 创建一个C++静态库项目hello_lib
+```
+
+
+我们发现当前目录多了个hello文件夹，结构是这样的：
+```text
+hello/
+- xmake.lua # 构建文件
+- src/
+    - main.cpp # 源文件
+```
+
+
+如果希望构建并运行这玩意，直接运行以下命令：
+```bash
+    cd hello # 进入hello目录
+    xmake # 构建
+    xmake run # 运行
+    xmake run -d # 调试运行
+```
+
+
+### 语法速通
+
+#### 最小示例
+
+```lua
+-- xmake.lua
+set_project("hello")
+set_version("1.0.0")
+add_rules("mode.debug", "mode.release")   -- 自动生成 debug/release 配置
+
+target("app")                             -- 一个目标
+    set_kind("binary")                    -- 可执行文件
+    add_files("src/*.cpp")                -- 通配符
+    set_languages("c++20")                -- 标准
+    add_packages("fmt")                   -- 依赖 fmt 头文件+库
+```
+
+我们发现，对比CMake，XMake的语法更加简洁，没有复杂的概念；无需手写类似于 `if (WIN32)` 这样的系统条件判断，XMake会自动根据宿主处理；虽然也有目标的概念（ `target` 块），但是这一个块就相当于CMake的 `add_executable` （或者 `add_library` ）和 `target_*` 的组合。
+
+在XMake中，目标也有作用域的概念。例如 `add_includedirs("include", {public = true} )`表示这个头文件目录是公共的，链接到这个目标的其他目标也可以使用这个头文件目录。
+
+#### 语法速查（和CMake对比）
+
+
+| CMake | XMake | 说明 |
+| --- | --- | --- |
+| `add_executable` | `target("app")` ,  `set_kind("binary")` | 声明一个可执行文件或库 |
+| `add_library` | `target("lib")` ,  `set_kind("static")` | 声明一个静态库或动态库 |
+| `target_sources` | `add_files("src/*.cpp")` | 添加源文件 |
+| `target_include_directories` | `add_includedirs("include")` | 添加头文件目录 |
+| `target_compile_definitions` | `add_defines("FOO")` | 添加编译选项 |
+| `target_compile_options` | `set_cxflags("-Wall")` | 添加编译选项 |
+| `target_link_libraries` | `add_links("bar")` | 添加链接库 |
+| `find_package` | `add_packages("fmt")` | 查找并添加包 |
+| `option()` | `option("BUILD_TESTS", true)` | 设置配置选项 |
+| `install()` | `add_installfiles("bin")` | 安装目标 |
+
+CMake和XMake的常用命令对比
+
+
+#### 目标、规则
+
+
+在XMake中，目标可以是以下种类当中的任意一种，我们可以使用 `set_kind()` 来设置目标类型。关于目标和作用域的讨论，XMake和CMake如出一辙。
+
+- `binary` ：可执行文件
+- `static` ：静态库
+- `shared` ：动态库
+- `phony` ：伪目标（不生成文件，只执行命令）
+- `headeronly` ：头文件库（只包含头文件，没有源文件）
+
+
+XMake的规则（rules）是预定义的构建规则，可以通过 `add_rules()` 来添加。我们可以理解为“编译的流水线”，例如：
+```lua
+rule("embed")
+    set_extensions(".txt")
+    on_build_file(function(target, sourcefile)
+        -- 把文本编译成 .o 里的字符数组
+    end)
+```
+
+上述代码定义了一个名为 `embed` 的规则，作用是将文本文件编译成目标文件中的字符数组。XMake提供了许多内置规则，例如 `mode.debug` 、 `mode.release` 等，可以直接使用。一般情况下，多个target可以共用一个规则。
+
+#### 调包
+
+
+XMake的包管理比CMake还要容易。我们可以非常简单地使用 `add_requires()` 来添加依赖包，非常方便。
+
+XMake的官方仓库有着九百多个常用的库。第一次编译的时候，XMake会先查本地缓存有没有需要的包；如果没有，就自动下载预编译文件或者源码。然后，XMake会自动设置include路径等必要的内容。
+
+```lua
+add_requires("fmt") -- 添加 fmt 依赖
+target("app")
+    set_kind("binary")
+    add_files("src/*.cpp")
+    add_packages("fmt") -- 链接 fmt 包
+```
+
+
+#### 跨平台、交叉编译、远程编译
+
+
+XMake的跨平台做得很好，不需要手写toolchain文件等，只需要在命令行中指定平台和架构即可。例如：
+```bash
+$ xmake f -p windows -a x64 -m release   # Windows 64-bit Release
+$ xmake f -p linux -a arm64 --sdk=/opt/rpi
+$ xmake
+```
+
+上述代码会在Windows上编译一个64位的Release版本，在Linux上编译一个ARM64的版本，并指定了Raspberry Pi的SDK路径。Raspberry Pi是一个流行的单板计算机（“树莓派”，常用于前端开发和嵌入式开发等轻量级场景）。
+
+另一方面，使用XMake运行远程编译功能也很容易：
+```bash
+$ xmake service --start                  # 本机当编译服务器
+$ xmake f --remote_build=y
+$ xmake                                  # 自动分发
+```
+
+上述代码会启动一个编译服务器，然后在本地编译时自动分发到服务器上进行编译。XMake会自动处理远程编译的细节，用户只需要关注代码和配置即可。
+
+### 打包发布
+
+XMake的打包发布也和CMake大同小异：
+```bash
+xmake package -f deb        # 生成 .deb
+xmake package -f nsis       # Windows 安装向导
+xmake package -f zip        # 绿色压缩包
+```
+
+
+### 常见坑
+
+XMake的常见坑和CMake类似：
+
+- 缓存出错： `xmake f -c` 清理配置，比删build快。
+- 多个版本包冲突：使用 `xmake require --info <package>` 查看已经缓存的包版本，使用 `xmake require --extra="{debug=true} " <package>`强制重装。
+- 调试脚本：使用 `xmake -vD` 输出详细日志。VS Code安装xmake插件也能打断点。
+- 懒惰（不想学lua）：绝大多数场景只使用6个API：target、set_kind、add_files、add_includedirs、add_links、add_packages。其他的现查都来得及。
+
+
+### 从CMake迁移到XMake
+
+如果你已经有了一个CMake项目，想要迁移到XMake。CMake项目的结构：
+```text
+project/
+- CMakeLists.txt
+- src/
+- tests/
+- thirdparty/fmt/
+```
+
+
+首先使用cmake2xmake工具粗略转换为XMake项目：
+```bash
+    xmake create -P . -t cmake2xmake
+```
+
+然后手动调整生成的xmake.lua文件，主要是：
+
+- 把add_subdirectory拆成多个target；
+- 把FetchContent转换为add_requires；
+- 把CMAKE_BUILD_TYPE转换为set_config("debug")或set_config("release")；
+- 把gtest_discover_tests转换为add_rules("test")等。
+
+最后，保留旧的构建目录，并行验证新旧构建结果是否一致。
+
+如果使用了CI等工具，需要将CI脚本中的相关命令从CMake转换为XMake。
+
+## Meson[^2]
+
+
+Meson是一个开源的构建系统，主要目标是尽可能地提高开发者的生产力。它力求快速、易用，并提供最现代化的软件构建工具。Meson的设计哲学是“不挡路”（Don't get in your way），致力于让构建过程尽可能简单、快速和可靠。
+
+与使用自定义脚本语言的CMake或使用Lua的XMake不同，Meson使用一种专门设计的、非图灵完备的领域特定语言（DSL）。这种设计的目的是为了确保构建定义的简洁性、可读性和可预测性，避免在构建脚本中出现过于复杂的逻辑。Meson的构建定义文件通常命名为 `meson.build` 。
+
+Meson本身并不直接编译代码，而是作为一个元构建系统生成另一套构建系统（Ninja或Visual Studio等）的项目文件，它的默认后端是Ninja。得益于其出色的设计和性能，Meson在开源社区获得了广泛的认可，许多大型项目，如GNOME（包括较底层的GLib、GTK以及各应用程序）、GStreamer、Systemd、Mesa等，都已采用Meson作为其官方构建系统。
+
+安装Meson非常简单，大多数系统的包管理器都提供了Meson：
+```bash
+sudo apt install meson # Debian/Ubuntu
+sudo pacman -S meson   # Arch Linux
+pacman -S mingw-w64-ucrt-x86_64-meson # MSYS2 on Windows
+brew install meson     # macOS
+```
+
+
+Android的Termux等少数环境没有提供Meson，由于Meson是Python包，因此也可以方便地通过pip安装：
+```bash
+pip install meson
+```
+
+
+### 最小运行实例
+
+Meson强制要求“外源构建”（out-of-source builds），即构建生成的文件必须位于一个与源码目录分开的独立目录中，保持源码树的整洁。
+
+假设我们有一个简单的 `main.c` 文件。在同级目录下，我们创建一个 `meson.build` 文件：
+```text
+# meson.build
+project('hello_meson', ['c'],
+  version : '0.1',
+  default_options : ['c_std=c11'])
+
+executable('hello', 'main.c')
+```
+
+
+然后，我们按以下步骤进行构建：
+```bash
+# 配置项目，创建构建目录 builddir
+# 可以通过`--buildtype` 来设置构建类型
+meson setup builddir --buildtype=debugoptimized
+
+# 编译
+# -C 指定构建目录
+meson compile -C builddir
+
+# 运行
+./builddir/hello
+```
+
+
+整个过程清晰明了。 `meson setup`  步骤只会执行一次（除非构建脚本或环境变化），后续的修改只需要运行 `meson compile -C builddir` 。其中， `--buildtype` 选项可以指定构建类型，如 `debug` 为调试模式， `release` 为发布模式， `debugoptimized` 为调试优化模式， `plain` 为纯粹的编译模式（使用环境变量中的构建参数）， `minsize` 为最小化大小优化模式， `custom` 为自定义模式。对于调试模式，Meson会自动设置编译器相关选项，添加调试符号。
+
+### 项目和目标
+
+每个Meson项目的根目录都必须有一个 `meson.build` 文件，并且第一条命令必须是 `project()` 。
+```text
+project('my_project', ['c', 'cpp']) # 项目名，使用的语言
+```
+
+
+目标（Target）是你想要构建的东西，可以是可执行文件或库等。
+```text
+# 创建一个可执行文件
+exe = executable('my_app', 'main.c', 'utils.c')
+
+# 创建一个静态库
+lib = static_library('my_lib', 'lib.c', 'helper.c')
+
+# 创建一个共享库
+shared_lib = shared_library('my_shared_lib', 'shared.cpp')
+```
+
+
+Meson中的变量默认是不可变的，这有助于写出更可预测的构建脚本。上面代码中的 `exe` 和 `lib` 就是持有目标对象引用的变量。
+
+### 依赖项处理
+
+Meson的依赖项处理是其一大亮点。它提供了一个统一的 `dependency()` 函数来查找外部依赖。
+```text
+# 查找 fmt 库，如果找不到则构建失败
+fmt_dep = dependency('fmt', required: true)
+
+executable('app', 'main.cpp',
+  dependencies : [fmt_dep]) # 将依赖项传递给目标
+```
+
+
+`dependency()`  函数会按顺序尝试多种方法来寻找依赖，包括（但不限于）：
+
+- **pkg-config**：这是在Linux和类UNIX系统上查找库的首选方式。
+- **CMake**：Meson可以调用 `find_package` 来查找CMake包。
+- **内置查找器**：对于一些常用库（如Zlib、Threads），Meson有自己的查找逻辑。
+
+
+### 子项目与Wrap系统
+
+Meson拥有一个名为Wrap的内置依赖包管理器，类似于CMake的 `FetchContent` 。当系统上没有安装某个依赖时，Meson可以通过Wrap系统从网上下载并构建它。
+
+要使用它，你需要在项目根目录下创建一个 `subprojects` 目录，并在其中放置一个 `.wrap` 文件。例如 `subprojects/fmt.wrap` ：
+```toml
+[wrap-file]
+directory = fmt-10.2.1
+source_url = https://github.com/fmtlib/fmt/releases/download/10.2.1/fmt-10.2.1.zip
+source_hash = e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+```
+
+然后，在 `meson.build` 中，你可以像查找系统库一样查找它：
+```text
+# Meson会先尝试系统查找，失败后会自动在subprojects目录中寻找fmt
+# fallback的第二个参数是子项目中的依赖变量名
+fmt_dep = dependency('fmt', fallback: ['fmt', 'fmt_dep'])
+```
+
+
+### 选项和配置
+
+你可以使用 `option()` 函数为你的项目定义可配置的选项。
+```text
+option('use_feature_x', type : 'boolean', value : true, description : 'Enable feature X')
+```
+
+用户在配置时可以通过 `-D` 参数来修改这些选项的值：
+```bash
+meson setup builddir -Duse_feature_x=false
+```
+
+要查看或修改一个已经配置好的构建目录的选项，可以使用 `meson configure` ：
+```bash
+meson configure builddir                # 查看所有选项
+meson configure builddir -Duse_feature_x=true # 修改选项
+```
+
+
+### 交叉编译
+
+交叉编译是Meson的一等公民。所有与交叉编译相关的设置都集中在一个单独的“交叉文件”（ `cross file` ）中。一个简单的交叉编译文件示例如下：
+```toml
+[binaries]
+c = 'loongarch64-linux-gnu-gcc'
+cpp = 'loongarch64-linux-gnu-g++'
+ar = 'loongarch64-linux-gnu-ar'
+strip = 'loongarch64-linux-gnu-strip'
+
+[host_machine]
+system = 'linux'
+cpu_family = 'loongarch64'
+cpu = 'loongarch64'
+endian = 'little'
+```
+
+
+在配置时使用 `--cross-file` 参数指定此文件：
+```bash
+meson setup build_loongarch64 --cross-file loongarch64-linux-gnu.txt
+meson compile -C build_loongarch64
+```
+
+Meson会处理好所有细节，确保使用正确的编译器和库路径。
+
+### 特点与比较
+
+
+- **语法和设计哲学**：Meson的语法是声明式的、非图灵完备的DSL，虽然这造成了一些限制，但这也使得构建脚本非常简洁且易于分析。它强制实施了许多最佳实践（如外源构建）。
+- **性能**：Meson的配置阶段通常非常快。由于其默认后端是Ninja，编译速度也极具竞争力。
+- **易用性**：对于新项目或初学者来说，Meson和XMake的上手难度通常低于CMake。Meson的错误提示非常友好，文档也极为出色。
+
+
+### 技巧与提示
+
+
+- **修改配置**：有时候因为Meson版本升级或者我们自己需要修改配置中的内容，需要重新配置项目构建目录。此时不必手动删除 `builddir` 目录来重新配置，使用 `meson setup --reconfigure builddir` 。
+- **调试**：Meson的输出信息非常清晰。如果遇到问题，仔细阅读它的错误提示与引导通常就能解决问题。
+- **官方文档**：Meson的[官方文档](https://mesonbuild.com/)是学习和解决问题的极佳资源，内容详尽且组织良好。
+
+
+Meson提供了一种不同的构建体验。如果你正在开始一个新的开源项目，Meson是一个非常值得考虑的优秀选择。
+
+[^1]: 本节作者臧炫懿，周乾康修改。
+[^2]: 本章作者周乾康。

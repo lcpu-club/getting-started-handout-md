@@ -1,7 +1,8 @@
 site_name: PKU计算机基础能力手册
 repo_url: https://github.com/lcpu-club/getting-started-handout-md/
 theme:
-  name: material
+  name: zensical
+  variant: modern
   language: zh
   palette:
     - scheme: default
@@ -9,14 +10,14 @@ theme:
       primary: indigo
       accent: indigo
       toggle:
-        icon: material/weather-night
+        icon: lucide/moon
         name: 切换至深色模式
     - scheme: slate
       media: "(prefers-color-scheme: dark)"
       primary: blue
       accent: blue
       toggle:
-        icon: material/weather-sunny
+        icon: lucide/sun
         name: 切换至浅色模式
   icon:
     logo: fontawesome/brands/linux
@@ -27,15 +28,12 @@ theme:
     - content.code.copy
     - content.tooltips
     - navigation.footer
-#    - navigation.indexes
+    - navigation.indexes
     - navigation.top
     - navigation.tracking
 
 plugins:
   - search
-
-watch:
-  - includes
 
 markdown_extensions:
   - admonition
@@ -44,8 +42,8 @@ markdown_extensions:
   - footnotes
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:zensical.extensions.emoji.twemoji
+      emoji_generator: !!python/name:zensical.extensions.emoji.to_svg
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -63,41 +61,57 @@ markdown_extensions:
   - toc:
       permalink: true
 
-#nav:
-#  - HOME:
-#      - "index.md"
-#      - ABOUT: "./HOME/about.md"
-#      - SPONSORSHIP: "./HOME/sponsorship.md"
-#  - CS:
-#      - "./CS/CS.md"
-#  - CODING:
-#      - "./CODING/coding.md"
-#  - EMBEDDED-SYS:
-#      - "./EMBEDDED-SYS/embedded-sys.md"
-#  - DSP:
-#      - "./DSP/dsp.md"
-#  - PERCEPTION:
-#      - "./PERCEPTION/perception.md"
-#  - ACTUATION:
-#      - "./ACTUATION/actuation.md"
-#      - ROS: "./ACTUATION/ROS/ros.md"
-#  - IOT:
-#      - "./IOT/iot.md"
-#  - CLOUD:
-#      - "./CLOUD/cloud.md"
-#      - CLOUD-TECH: "./CLOUD/CLOUD-TECH/cloud-tech.md"
-#      - HANDS-ON:
-#          - Have A Server: "./CLOUD/HANDS-ON/001-HAVE-A-SERVER/have-a-server.md"
-#          - Server Configuration: "./CLOUD/HANDS-ON/002-SERVER-CONFIG/server-config.md"
-#          - Get A Domain Name: "./CLOUD/HANDS-ON/003-DOMAIN-NAME/domain-name.md"
-#  - :simple-git:GIT:
-#      - icon: simple-git
-#      - "./git/index.md"
-#  - RESEARCH:
-#      - "./RESEARCH/research.md"
-#  - PROJECT:
-#      - "./PROJECT/project.md"
-#      - TECH-BLOG: "./PROJECT/TECH-BLOG/mkdocs_and_material.md"
+nav:
+  - 首页: index.md
+  - 第二版前言: converted/introduction.md
+  - 知识速查: converted/quick-check.md
+  - 导航和方法:
+      - converted/book1/index.md
+      - 搜索和信息获取: converted/book1/knowledge-acquirement.md
+  - 基础使用：让计算机先跑起来:
+      - converted/book2/index.md
+      - 计算机的硬件、购机与验机: converted/book2/01-buy-and-check.md
+      - 系统安装、基础配置和软件生态: converted/book2/02-install-software.md
+      - 初步使用计算机: converted/book2/03-usage.md
+  - 终端和Linux基础：为开发铺垫语境:
+      - converted/book3/index.md
+      - 终端101: converted/book3/01-shell-101.md
+      - 开始使用 Linux: converted/book3/02-linux.md
+  - 开发环境：让代码能编译能跑:
+      - converted/book4/index.md
+      - 正式踏入编程世界: converted/book4/01-coding.md
+      - C语言入门: converted/book4/02-c-guidance.md
+      - 从C到C++: converted/book4/03-cpp-guidance-1.md
+      - C++进阶: converted/book4/03-cpp-guidance-2.md
+      - 现代C++特性: converted/book4/031-modern-cpp.md
+      - C++真理大讨论: converted/book4/03-cpp-guidance-3.md
+      - C系工程概述: converted/book4/04-cpp-project.md
+      - Python高速入门: converted/book4/05-python-guidance.md
+      - Python常用包: converted/book4/06-python-packages.md
+  - 实用主义编程：写出更好的代码:
+      - converted/book5/index.md
+      - Git与版本控制: converted/book5/01-git-github.md
+      - 密钥与远程: converted/book5/02-secret-key.md
+      - 实用主义编程: converted/book5/03-pragmatic-coding.md
+      - 调试、测试和部署: converted/book5/04-debugging.md
+      - 数据存储和交换: converted/book5/05-data-exchange.md
+  - 原理速览：知其然，更知其所以然:
+      - converted/book6/index.md
+      - 信息表示和机器级代码: converted/book6/01-binary.md
+      - 内存缓存管理和系统调用: converted/book6/02-memory.md
+      - 计算机的启动和输入输出: converted/book6/03-boot-io-network.md
+      - 数据结构: converted/book6/04-data-structure.md
+      - 算法基础: converted/book6/05-algorithm.md
+  - 工具箱:
+      - converted/tools/index.md
+      - 文字排版：Markdown 和 Typst: converted/tools/01-text-processing.md
+      - LaTeX: converted/tools/02-latex.md
+      - LaTeX 进阶: converted/tools/03-latex-advanced.md
+  - 延伸进阶阅读:
+      - converted/advanced/index.md
+      - 现代高性能并发编程：异步、多进程和多线程: converted/advanced/multitask.md
+      - 神经网络和机器学习: converted/advanced/nn.md
+  - 后记: converted/postscript.md
 
 extra_css:
   - assets/css/theme-images.css

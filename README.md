@@ -3,6 +3,6 @@
 本地部署：
 
 ```bash
-pip install mkdocs-material
-mkdocs serve
+pip install zensical
+zensical serve
 ```
