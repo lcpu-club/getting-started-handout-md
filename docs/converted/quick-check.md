@@ -60,3 +60,11 @@ icon: material/flash
 - [正版软件](https://software.pku.edu.cn)
 - [课程查询](https://class.wjsphy.top/)
 - [笔记共享平台](https://pkuhub.cn/)，建议注册使用
+
+<!-- handout-sync-source
+source_type: latex
+source_url: https://github.com/ZangXuanyi/getting-started-handout
+source_branch: main
+source_commit: e1f6c5d23fb730d144f0261027c515ca0971ffc6
+source_commit_short: e1f6c5d
+-->

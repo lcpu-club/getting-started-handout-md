@@ -11,7 +11,7 @@ icon: material/pencil-outline
 
 ![感谢每一位读到这里的同学！](images/kawaii.jpg)
 
-不过也正常，大家看书总归是看个乐，我相信大多数人不会故意去做一些自己厌恶的事情去折磨自己。而不同的人喜欢的东西又不一样，所以说看不完手册也是非常正常的事情。毕竟人最终还是要过得快乐一些。当然，大伙都是貔貅，光进不吐，这导致整本书的内容全都是我手敲的，真是令人遗憾。（不过敲字也是我的一个爱好，这也算是因祸得福了？）
+不过也正常，大家看书总归是看个乐，我相信大多数人不会故意去做一些自己厌恶的事情去折磨自己。而不同的人喜欢的东西又不一样，所以说看不完手册也是非常正常的事情。毕竟人最终还是要过得快乐一些。当然，大伙都是貔貅，光进不吐，这导致整本书的内容全都是我手敲的，真是令人遗憾。（不过敲字也是我的一个爱好——这也算是因祸得福了？）
 
 不要因为我说了这几句话就不给我提 PR 和 Issue 了啊喂 `(#'O')`！
 
@@ -38,3 +38,11 @@ icon: material/pencil-outline
 可爱大笨蛋<br>
 2025年7月，在燕园
 </p>
+
+<!-- handout-sync-source
+source_type: latex
+source_url: https://github.com/ZangXuanyi/getting-started-handout
+source_branch: main
+source_commit: e1f6c5d23fb730d144f0261027c515ca0971ffc6
+source_commit_short: e1f6c5d
+-->

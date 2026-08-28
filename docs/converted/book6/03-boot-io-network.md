@@ -321,3 +321,11 @@ HTTP/1.1 只有一条 TCP 连接，只能串行传输数据，效率低下。为
 [^26]: AP，全称 Access Point，接入点，是无线局域网（WLAN）中的一种网络设备，用于连接无线设备（如笔记本电脑、智能手机等）到有线网络（如以太网）。AP 通常通过有线连接到路由器或交换机，然后通过无线信号与无线设备进行通信。AP 可以提供无线覆盖范围，允许多个无线设备同时连接到网络，实现无线数据传输和互联网访问。
 [^27]: ACK，全称 Acknowledgment，确认，是计算机网络中的一种控制信息，用于确认数据包的接收和传输。在 TCP 协议中，ACK 是一个重要的标志位，用于表示接收方已经成功接收到发送方发送的数据包，并通知发送方可以继续发送下一个数据包。
 [^28]: TCP 头阻塞问题是指在 TCP 协议中，由于数据包的顺序传输和确认机制，当一个数据包丢失或延迟时，后续的数据包即使已经到达接收端，也无法被处理，导致整个连接的传输效率下降。这种现象被称为“头阻塞”，因为它阻塞了后续数据包的处理。
+
+<!-- handout-sync-source
+source_type: latex
+source_url: https://github.com/ZangXuanyi/getting-started-handout
+source_branch: main
+source_commit: e1f6c5d23fb730d144f0261027c515ca0971ffc6
+source_commit_short: e1f6c5d
+-->

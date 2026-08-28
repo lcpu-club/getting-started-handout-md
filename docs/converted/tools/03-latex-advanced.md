@@ -15,7 +15,7 @@ icon: material/school-outline
 \usepackage{amsmath}
 ```
 
-#### 行内公式
+### 行内公式
 
 在 LaTeX 中，行内数学模式使用美元符号（`$`）包围数学内容，例如：`$E=mc^2$`。这将在文本中显示为 $E=mc^2$。另一种方式是使用反斜杠加括号：`\(E=mc^2\)`。
 
@@ -25,9 +25,9 @@ icon: material/school-outline
 \newcommand{\vect}[1]{\ensuremath{\mathbf{#1}}}
 ```
 
-这样，无论在文本中还是数学公式中使用 `\vect{v}`，都能正确显示为 $\mathbf{v}$。但是，普通公式非常不建议用这个，仅建议在定义命令时使用。
+这样，无论在文本中还是数学公式中使用 `\vect{v}`，都能正确显示为 $\mathbf{v}$。
 
-#### 行间公式
+### 行间公式
 
 行间公式则是较大的、被单独展示的数学表达式。可以使用反斜杠加中括号：`\[E=mc^2\]`，这样会将公式居中显示在单独的一行上：
 
@@ -38,16 +38,16 @@ $$
 上述方法不会带行号，如果需要行号，可以使用 `amsmath` 宏包提供的 `equation` 环境：
 
 ```latex
-BEGIN{equation}
+&#92;begin{equation}
 E=mc^2
-END{equation}
+&#92;end{equation}
 ```
 
 在数学模式中输入的空格会被忽略，间距由 TeX 自动控制，也就是说 `$a + b$` 和 `$a+b$` 效果是一样的，都会显示为 $a+b$。
 
 数学模式中禁用分段、汉字和中文标点。在行间公式中不允许换行。
 
-#### 什么时候使用数学模式
+### 什么时候使用数学模式
 
 在数学模式中，LaTeX 会对输入的内容进行特殊处理，以确保数学符号和表达式的正确显示。因此，即使是最简单的数学表达式都要放在数学模式中，例如变量、运算符和函数等。例如，变量 $x$ 和 $y$ 应该写成 `$x$` 和 `$y$`，而不是直接写成 `x` 和 `y`；`1+1=2` 应该写成 `$1+1=2$`。
 
@@ -91,7 +91,7 @@ END{equation}
 
 #### 上下划线
 
-上划线和下划线分别使用 `\overline{内容}` 和 `\underline{内容}` 输入，例如：`$\overline{AB}$` 显示为 $\overline{AB}$，`$\underline{xy}$` 显示为 $\underline{xy}$。amsmath 也提供了一组在符号上下加划线的命令，例如：`\overleftarrow{内容}`、`\overrightarrow{内容}`、`\underleftarrow{内容}` 和 `\underrightarrow{内容}`。`overrightarrow` 常用于表示向量，和 `\vec` 效果类似；但 `\vec` 适合单个字符的向量表示，而 `\overrightarrow` 则适合多个字符的向量表示。
+上划线和下划线分别使用 `\overline{内容}` 和 `\underline{内容}` 输入，例如：`$\overline{AB}$` 显示为 $\overline{AB}$，`$\underline{xy}$` 显示为 $\underline{xy}$。amsmath 也提供了一组在符号上下加划线的命令，例如：`\overleftarrow{内容}`、`\overrightarrow{内容}`、`\underleftarrow{内容}` 和 `\underrightarrow{内容}`。`\overrightarrow` 常用于表示向量，和 `\vec` 效果类似；但 `\vec` 适合单个字符的向量表示，而 `\overrightarrow` 则适合多个字符的向量表示。
 
 #### 文本
 
@@ -129,7 +129,7 @@ $$
 
 在 LaTeX 中，图表和其他浮动体（如表等）是通过浮动体来管理的。浮动体允许 LaTeX 根据页面布局自动调整图表的位置，以确保文档的美观和可读性。
 
-浮动体之所以“浮动”，是因为它们并不固定在文档中的某个位置，而是可以根据页面布局和排版需求自动调整位置。这样可以避免图表被拆分到不同的页面上，或者与文本内容重叠，从而提高文档的整体质量。但这样会导致图表的位置不一定和代码中出现的位置一致，例如
+浮动体之所以"浮动"，是因为它们并不固定在文档中的某个位置，而是可以根据页面布局和排版需求自动调整位置。这样可以避免图表被拆分到不同的页面上，或者与文本内容重叠，从而提高文档的整体质量。但这样会导致图表的位置不一定和代码中出现的位置一致，例如
 
 ```text
 文本1
@@ -137,7 +137,7 @@ $$
 文本2
 ```
 
-上述编译出的文档中，浮动体可能会出现在“文本1”之前、“文本1”和“文本2”之间，或者“文本2”之后，具体位置取决于页面布局。但多个浮动体在文本中的相对顺序是不会改变的。
+上述编译出的文档中，浮动体可能会出现在"文本1"之前、"文本1"和"文本2"之间，或者"文本2"之后，具体位置取决于页面布局。但多个浮动体在文本中的相对顺序是不会改变的。
 
 ### 插入图片
 
@@ -152,15 +152,15 @@ $$
 然后，可以使用 `figure` 环境来插入图片。例如：
 
 ```latex
-BEGIN{figure}[htbp]
+&#92;begin{figure}[htbp]
   \centering
-  includegraphics[width=0.5\textwidth]{example-image}
+  &#92;includegraphics[width=0.5\textwidth]{example-image}
   \caption{示例图片}
-  label{fig:example}
-END{figure}
+  &#92;label{fig:example}
+&#92;end{figure}
 ```
 
-上述代码中，`[htbp]` 是浮动体的位置参数，表示允许 LaTeX 将图片放置在此处（here）、顶部（top）、底部（bottom）或单独一页（page）。`\centering` 用于将图片居中显示，`includegraphics` 用于插入图片文件，`width=0.5\textwidth` 指定图片的宽度为文本宽度的一半。`\caption` 用于添加图片标题，`label` 用于为图片设置标签，以便在文档中引用。
+上述代码中，`[htbp]` 是浮动体的位置参数，表示允许 LaTeX 将图片放置在此处（here）、顶部（top）、底部（bottom）或单独一页（page）。`\centering` 用于将图片居中显示，`&#92;includegraphics` 用于插入图片文件，`width=0.5\textwidth` 指定图片的宽度为文本宽度的一半。`\caption` 用于添加图片标题，`&#92;label` 用于为图片设置标签，以便在文档中引用。
 
 上述浮动体的位置参数如不写，则默认为 `[tbp]`（对，这里非常坑人，默认不包含 h 选项）。建议总是显式指定位置参数，以确保图片能够尽可能地出现在期望的位置。
 
@@ -169,14 +169,14 @@ END{figure}
 ```latex
 \usepackage{float}
 
-BEGIN{figure}[H]
+&#92;begin{figure}[H]
   ...
-END{figure}
+&#92;end{figure}
 ```
 
 需要注意的是，强制图片出现在指定位置可能会影响页面布局和排版效果，因此应谨慎使用。
 
-`includegraphics` 命令支持多种图片格式，包括 PNG、JPEG、PDF 和 EPS 等。建议使用矢量图格式（如 PDF 或 EPS）以获得更好的缩放效果，尤其是在打印时。该命令有一些常用选项，例如：
+`&#92;includegraphics` 命令支持多种图片格式，包括 PNG、JPEG、PDF 和 EPS 等。建议使用矢量图格式（如 PDF 或 EPS）以获得更好的缩放效果，尤其是在打印时。该命令有一些常用选项，例如：
 
 - `width=宽度`：指定图片的宽度，例如 `width=0.5\textwidth`。
 - `height=高度`：指定图片的高度，例如 `height=3cm`。
@@ -185,7 +185,7 @@ END{figure}
 
 最常用的莫过于设置宽度和高度，可以单独设置其中一个，另一个会按比例自动调整；也可以同时设置宽度和高度，但可能会导致图片变形。
 
-`caption` 命令用于为图片添加标题，标题会自动编号，并且可以通过 `label` 命令设置标签，以便在文档中引用。例如，可以使用 `ref{fig:example}` 来引用图片。
+`\caption` 命令用于为图片添加标题，标题会自动编号，并且可以通过 `&#92;label` 命令设置标签，以便在文档中引用。例如，可以使用 `&#92;ref{fig:example}` 来引用图片。
 
 #### 子图
 
@@ -198,22 +198,22 @@ END{figure}
 然后，可以使用 `subfigure` 环境来插入子图。例如：
 
 ```latex
-BEGIN{figure}[htbp]
+&#92;begin{figure}[htbp]
   \centering
   \subfigure[子图1标题]{
-    includegraphics[width=0.4\textwidth]{example-image-a}
-    label{fig:sub1}
+    &#92;includegraphics[width=0.4\textwidth]{example-image-a}
+    &#92;label{fig:sub1}
   }
   \subfigure[子图2标题]{
-    includegraphics[width=0.4\textwidth]{example-image-b}
-    label{fig:sub2}
+    &#92;includegraphics[width=0.4\textwidth]{example-image-b}
+    &#92;label{fig:sub2}
   }
   \caption{整体图片标题}
-  label{fig:overall}
-END{figure}
+  &#92;label{fig:overall}
+&#92;end{figure}
 ```
 
-上述代码中，`\subfigure` 用于插入子图，并且可以为每个子图添加标题和标签。整体图片的标题和标签仍然使用 `\caption` 和 `label` 命令。
+上述代码中，`\subfigure` 用于插入子图，并且可以为每个子图添加标题和标签。整体图片的标题和标签仍然使用 `\caption` 和 `&#92;label` 命令。
 
 ### 插入表格
 
@@ -224,21 +224,21 @@ END{figure}
 最朴素的表格利用 `tabular` 环境实现，例如：
 
 ```latex
-BEGIN{tabular}{|c|c|c|}
+&#92;begin{tabular}{|c|c|c|}
   \hline
   列1 & 列2 & 列3 \\
   \hline
   数据1 & 数据2 & 数据3 \\
   数据4 & 数据5 & 数据6 \\
   \hline
-END{tabular}
+&#92;end{tabular}
 ```
 
-tabular 不是浮动体环境，表格会出现在代码中的位置。大括号中的参数指定了表格的列格式，有几个字母就有几列，常用的字母包括 c、l、r，分别表示居中、左对齐和右对齐。竖线（`|`）表示列之间的竖线。
+`tabular` 不是浮动体环境，表格会出现在代码中的位置。大括号中的参数指定了表格的列格式，有几个字母就有几列，常用的字母包括 c、l、r，分别表示居中、左对齐和右对齐。竖线（`|`）表示列之间的竖线。
 
-而表格中的每一行以双反斜杠（`\\`）结束，列与列之间使用 `&` 符号分隔，用于制表。例如，上述代码中的第一行表示表头，包含三列，分别是“列1”、“列2”和“列3”。第二行和第三行分别表示两行数据。`\hline` 命令用于添加水平线。
+而表格中的每一行以双反斜杠（`\\`）结束，列与列之间使用 `&` 符号分隔，用于制表。例如，上述代码中的第一行表示表头，包含三列，分别是"列1"、"列2"和"列3"。第二行和第三行分别表示两行数据。`\hline` 命令用于添加水平线。
 
-也可以引用 `booktabs` 宏包来美化表格，例如使用 `\toprule`、`\midrule` 和 `\bottomrule` 命令来替代 `\hline`，从而获得更专业的表格外观，得到基础的“三线表”效果。
+也可以引用 `booktabs` 宏包来美化表格，例如使用 `\toprule`、`\midrule` 和 `\bottomrule` 命令来替代 `\hline`，从而获得更专业的表格外观，得到基础的"三线表"效果。
 
 但是该朴素的表格不能添加标题和标签，也不能自动调整位置，更不能跨页显示。
 
@@ -247,16 +247,16 @@ tabular 不是浮动体环境，表格会出现在代码中的位置。大括号
 可以使用 `table` 环境来插入带标题和标签的表格。例如：
 
 ```latex
-BEGIN{table}[htbp]
+&#92;begin{table}[htbp]
   \centering
-  BEGIN{tabular}{|c|c|c|}
+  &#92;begin{tabular}{|c|c|c|}
     ...
-  END{tabular}
+  &#92;end{tabular}
   \caption{示例表格}
-END{table}
+&#92;end{table}
 ```
 
-上述代码中的 table 是浮动体环境，允许 LaTeX 根据页面布局自动调整表格的位置。其余部分与前面介绍的 `tabular` 环境相同。但该表格依然不能跨页显示。
+上述代码中的 `table` 是浮动体环境，允许 LaTeX 根据页面布局自动调整表格的位置。其余部分与前面介绍的 `tabular` 环境相同。但该表格依然不能跨页显示。
 
 #### 跨页表格
 
@@ -269,23 +269,23 @@ END{table}
 然后，可以使用 `longtable` 环境来插入跨页表格。例如：
 
 ```latex
-BEGIN{longtable}{|c|c|c|}
+&#92;begin{longtable}{|c|c|c|}
     \caption{跨页表格示例} \\
     \hline
     列1 & 列2 & 列3 \\
     \hline
-    ENDfirsthead
+    &#92;endfirsthead
     \hline
     列1 & 列2 & 列3 \\
     \hline
-    ENDhead
+    &#92;endhead
     数据1 & 数据2 & 数据3 \\
     数据4 & 数据5 & 数据6 \\
-    ... 
-END{longtable}
+    ...
+&#92;end{longtable}
 ```
 
-上述代码中，`ENDfirsthead` 和 `ENDhead` 命令用于定义表格在每一页的表头。其余部分与前面介绍的 `tabular` 环境基本相同，但该环境能自动处理跨页问题，也能够添加标题、标签等功能。
+上述代码中，`&#92;endfirsthead` 和 `&#92;endhead` 命令用于定义表格在每一页的表头。其余部分与前面介绍的 `tabular` 环境基本相同，但该环境能自动处理跨页问题，也能够添加标题、标签等功能。
 
 ## 自定义命令和自定义环境
 
@@ -311,7 +311,7 @@ END{longtable}
 这是一个向量：$\vect{v}$。
 ```
 
-上述代码将在文档中显示为“这是一个向量：$\mathbf{v}$”。
+上述代码将在文档中显示为"这是一个向量：$\mathbf{v}$"。
 
 也可以更改现有的命令，例如：
 
@@ -323,7 +323,7 @@ END{longtable}
 
 我们发现这些命令定义中使用了 `#1` 这类的符号，这是因为在自定义命令中，参数是通过 `#1`、`#2` 等符号来引用的，分别对应第一个、第二个参数，以此类推。
 
-也有一些较为特殊的用法，例如我“想重定义某命令，但还要保留其原有功能”，这时可以使用 `\let` 命令来实现。例如：
+也有一些较为特殊的用法，例如我"想重定义某命令，但还要保留其原有功能"，这时可以使用 `\let` 命令来实现。例如：
 
 ```latex
 \let\oldemph\emph
@@ -343,23 +343,23 @@ END{longtable}
 其中，`环境名` 是你想要定义的环境名称，`参数个数` 是该环境接受的参数个数（可选，默认为 0），`环境开始代码` 是该环境开始时执行的代码，`环境结束代码` 是该环境结束时执行的代码。例如，定义一个名为 `highlight` 的环境，用于高亮显示文本：
 
 ```latex
-\newenvironment{highlight}{BEGIN{quote}\color{red}}{END{quote}}
+\newenvironment{highlight}{&#92;begin{quote}\color{red}}{&#92;end{quote}}
 ```
 
 上述代码定义了一个名为 `highlight` 的环境，它将在红色引用块中显示文本。可以在文档中使用该环境，例如：
 
 ```latex
-BEGIN{highlight}
+&#92;begin{highlight}
 这是高亮显示的文本。
-END{highlight}
+&#92;end{highlight}
 ```
 
-上述代码将在文档中显示为红色引用块中的“这是高亮显示的文本”。
+上述代码将在文档中显示为红色引用块中的"这是高亮显示的文本"。
 
 同样的，环境也支持重新定义，例如：
 
 ```latex
-\renewenvironment{quote}{BEGIN{itshape}}{END{itshape}}
+\renewenvironment{quote}{&#92;begin{itshape}}{&#92;end{itshape}}
 ```
 
 上述代码将 `quote` 环境重新定义为斜体显示。
@@ -380,23 +380,23 @@ Beamer 类文档的基本结构和普通的 LaTeX 文档类似。然而，在正
 \title{我的第一篇 Beamer 幻灯片}
 \author{张三}
 \date{\today}
-BEGIN{document}
+&#92;begin{document}
 \frame{\titlepage} % 生成标题页
-BEGIN{frame}
+&#92;begin{frame}
   \frametitle{引言} % 设置帧标题
   这是我的第一篇 Beamer 幻灯片。
   我们可以在这里写一些数学公式：
-  BEGIN{equation}
+  &#92;begin{equation}
     E=mc^2
-  END{equation}
-END{frame}
-END{document}
+  &#92;end{equation}
+&#92;end{frame}
+&#92;end{document}
 ```
 
 如上述代码所示，创建帧有两种方式：一种是使用 `\frame{}` 命令，另一种是使用 `frame` 环境。前者适合内容较少的帧，后者适合内容较多的帧。在帧中添加标题可以使用 `\frametitle{标题}` 命令，如希望添加简单文字、图片、公式等内容，可以直接在帧中编写，方法和普通的 LaTeX 文档几乎完全相同。然而，如果希望添加表格、代码等浮动内容，则需要在该帧加上 `[fragile]` 选项，也就是：
 
 ```latex
-BEGIN{frame}[fragile]
+&#92;begin{frame}[fragile]
 ```
 
 ### Beamer的常用强调
@@ -408,28 +408,28 @@ BEGIN{frame}[fragile]
 \textcolor{blue}{这是蓝色的文本}
 ```
 
-另外，它也提供了一些“块”命令来强调内容，例如 `block`、`alertblock` 和 `exampleblock` 等环境。例如：
+另外，它也提供了一些"块"命令来强调内容，例如 `block`、`alertblock` 和 `exampleblock` 等环境。例如：
 
 ```latex
-BEGIN{block}{普通块}
+&#92;begin{block}{普通块}
   这是一个普通块。
-END{block}
-BEGIN{alertblock}{警告块}
+&#92;end{block}
+&#92;begin{alertblock}{警告块}
   这是一个警告块。
-END{alertblock}
-BEGIN{exampleblock}{示例块}
+&#92;end{alertblock}
+&#92;begin{exampleblock}{示例块}
   这是一个示例块。
-END{exampleblock}
+&#92;end{exampleblock}
 ```
 
 最后，Beamer 还支持显隐效果，这种显隐效果在列表的逐步显示中非常有用。一个最简单的逐步显示的例子如下：
 
 ```latex
-BEGIN{itemize}
+&#92;begin{itemize}
   \item<1-> 第一项
   \item<2-> 第二项
   \item<3-> 第三项
-END{itemize}
+&#92;end{itemize}
 ```
 
 上述代码中，`<1->` 表示从这页的第一帧开始显示这一项，以此类推。如果只想在某一帧显示某一项，可以使用 `<n>` 的形式，例如 `<2>` 表示只在第二帧显示这一项。上述代码也可以用在其他环境中，例如段落、公式等。
@@ -477,26 +477,34 @@ ModernCV 是一个用于制作简历的 LaTeX 文档类。它提供了多种简�
 
 \moderncvtheme[blue]{casual}        % 主题选casual，颜色选忧郁蓝
 \name{王小明}{摸鱼学硕士}             % 名字和头衔分开写，防止过于嚣张
-\email{run@fast.com}                % 建议别用“ilovexxx@qq.com”
+\email{run@fast.com}                % 建议别用"ilovexxx@qq.com"
 \social[github]{github.com/xxx}
 \social[linkedin]{xxx}              % 假装有国际化人脉
 \quote{Stay hungry，stay foolish}   % 乔布斯名言，HR已免疫
 
-BEGIN{document}
+&#92;begin{document}
 \maketitle  % 生成个人信息区块
 
-section{教育背景}
+&#92;section{教育背景}
 \cventry{2021--2025}{专业：理论与实操}{某大学}{寄点3.0/4.0}{}{核心课程：《咖啡因代谢学》《早八生存指南》}
 
-section{实习经历}
+&#92;section{实习经历}
 \cventry{2023.06--2023.09}{首席工位守护者}{某厂}{}{}{主要成就：带薪拉屎时长部门TOP1}
-END{document}
+&#92;end{document}
 ```
 
-如你所见，ModernCV 的使用非常简单。我们只需在导言区加载 `moderncv` 宏包，并设置主题和颜色，然后使用 `\name`、`\email` 和 `\social` 等命令来添加个人信息。正文部分则使用 `section` 和 `\cventry` 等命令来添加简历内容。这样就可以快速地生成一份简洁、美观的简历，免除了使用 Word 等工具排版的烦恼。
+如你所见，ModernCV 的使用非常简单。我们只需在导言区加载 `moderncv` 宏包，并设置主题和颜色，然后使用 `\name`、`\email` 和 `\social` 等命令来添加个人信息。正文部分则使用 `&#92;section` 和 `\cventry` 等命令来添加简历内容。这样就可以快速地生成一份简洁、美观的简历，免除了使用 Word 等工具排版的烦恼。
 
-该包的另一个极为良好的特性是可以自动压缩空白区域，可以有效地避免“半页纸尴尬”。但是与其这样，感觉确实不如多整点活填满这页纸（大嘘）。所以欢迎来 LCPU 玩混项目（不是）。
+该包的另一个极为良好的特性是可以自动压缩空白区域，可以有效地避免"半页纸尴尬"。但是与其这样，感觉确实不如多整点活填满这页纸（大嘘）。所以欢迎来 LCPU 玩混项目（不是）。
 
 以上就是 LaTeX 的相当多内容了。掌握这些内容后，你已经可以使用 LaTeX 来排版大部分常见的文档类型了。当然，LaTeX 的功能远不止于此，还有许多高级技巧和宏包可以进一步扩展其功能。希望你能继续探索 LaTeX 的世界，发现更多有趣的用法！
 
 [^1]: 本章作者张庭瑄。
+
+<!-- handout-sync-source
+source_type: latex
+source_url: https://github.com/ZangXuanyi/getting-started-handout
+source_branch: main
+source_commit: e1f6c5d23fb730d144f0261027c515ca0971ffc6
+source_commit_short: e1f6c5d
+-->

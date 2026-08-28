@@ -1,15 +1,16 @@
 ---
 icon: material/file-document-outline
 ---
+
 # LaTeX[^1]
 
 LaTeX 是一种基于 TeX 的排版系统，广泛用于学术论文、书籍和其他需要高质量排版的文档。与 Markdown 相比，LaTeX 提供了更强大的排版功能，尤其是在处理复杂的数学公式和图表时。
 
-TeX 实际上是一种语言，在1978年由高德纳（Donald E. Knuth）发明，旨在提供一种高质量的排版系统。基本的 TeX 功能仅有300个命令，晦涩难懂，一个简单的符号就需要许多命令实现。后来，人们把这些基本命令封装起来，做成了简写（宏），来实现特殊的目的，于是又出现了 Plain TeX、LaTeX 和 ConTeXt 等“宏集合”。LaTeX 是其中最流行的一个。
+TeX 实际上是一种语言，在1978年由高德纳（Donald E. Knuth）发明，旨在提供一种高质量的排版系统。基本的 TeX 功能仅有300个命令，晦涩难懂，一个简单的符号就需要许多命令实现。后来，人们把这些基本命令封装起来，做成了简写（宏），来实现特殊的目的，于是又出现了 Plain TeX、LaTeX 和 ConTeXt 等"宏集合"。LaTeX 是其中最流行的一个。
 
-而有了语言，就得有编译器/解释器这种东西。而在 TeX 中，这类东西被叫做“引擎”。常见的引擎包括 pdfTeX、XeTeX 和 LuaTeX 等。不同的引擎有着不同的特点和适用场景，例如 pdfTeX 适合处理简单的英文文档，是早年间的主流引擎；XeTeX 最大的卖点在“系统字体即拿即用”、Unicode 原生支持两方面，是汉语相关文档的首选引擎； LuaTeX 则是2007年起的新一代引擎，把内部代码逐渐换成Lua脚本，目标是把TeX 从硬编码的时代解放出来，功能和XeTeX相似，但更开放、更可编程，被视为“未来的 TeX 引擎”。这些引擎配上 LaTeX 宏集合，就被相应的叫做 pdfLaTeX、XeLaTeX 和 LuaLaTeX。
+而有了语言，就得有编译器/解释器这种东西。而在 TeX 中，这类东西被叫做"引擎"。常见的引擎包括 pdfTeX、XeTeX 和 LuaTeX 等。不同的引擎有着不同的特点和适用场景，例如 pdfTeX 适合处理简单的英文文档，是早年间的主流引擎；XeTeX 最大的卖点在"系统字体即拿即用"、Unicode 原生支持两方面，是汉语相关文档的首选引擎； LuaTeX 则是2007年起的新一代引擎，把内部代码逐渐换成Lua脚本，目标是把TeX 从硬编码的时代解放出来，功能和XeTeX相似，但更开放、更可编程，被视为"未来的 TeX 引擎"。这些引擎配上 LaTeX 宏集合，就被相应的叫做 pdfLaTeX、XeLaTeX 和 LuaLaTeX。
 
-为了方便用户使用，开发者们把引擎、宏集合、字体、更新机制乃至其他常用宏包都打包在一起，形成一个“发行版”。 常见的发行版有 TeX Live、MikTeX 和 MacTeX 等。TeX Live 是目前最流行的发行版，支持多种操作系统，包括 Windows、Linux 和 macOS，每年一个新版本，一次安装就能下载整个 LaTeX 全家桶；MikTeX 主要面向 Windows 用户，提供了易于使用的安装程序和更新机制，对于其他宏包是随用随下载；MacTeX 则是专为 macOS 设计的发行版，集成了 macOS 的特性和工具。
+为了方便用户使用，开发者们把引擎、宏集合、字体、更新机制乃至其他常用宏包都打包在一起，形成一个"发行版"。 常见的发行版有 TeX Live、MikTeX 和 MacTeX 等。TeX Live 是目前最流行的发行版，支持多种操作系统，包括 Windows、Linux 和 macOS，每年一个新版本，一次安装就能下载整个 LaTeX 全家桶；MikTeX 主要面向 Windows 用户，提供了易于使用的安装程序和更新机制，对于其他宏包是随用随下载；MacTeX 则是专为 macOS 设计的发行版，集成了 macOS 的特性和工具。
 
 LaTeX的源文档与 Markdown 的简洁干净不同，而是充斥着许多反斜杠、大括号和宏。这表明如果直接使用 LaTeX 进行文本编辑的话会令人极度头大乃至效率降低；因此我个人建议同学们在使用上述工具时，最好是心中打好腹稿然后再进行工作。
 
@@ -37,7 +38,7 @@ LaTeX的安装冗长且复杂，我这里以最通行的TeX Live为例，介绍�
 
 由于未知原因，如果计算机上提前安装了jdk、mingw或Cygwin，建议暂时先把以上软件从环境变量中剔除，等整个安装好了以后再加回去。2345 好压可能也会导致类似的错误，本人建议彻底卸载之，并从此以后不要碰相关的东西；笔者推荐使用 7z 这个压缩软件。
 
-将下载下来的虚拟光驱镜像装载到虚拟光驱中，然后执行其中的批处理文件进行安装。安装过程中，建议选择“安装所有包”以防出现各种未知的错误。之后，在弹出的窗口中选择清华源（校外）或者北大源（校内，速度更快）并进行下载安装。安装过程可能需要较长时间，请耐心等待。
+将下载下来的虚拟光驱镜像装载到虚拟光驱中，然后执行其中的批处理文件进行安装。安装过程中，建议选择"安装所有包"以防出现各种未知的错误。之后，在弹出的窗口中选择清华源（校外）或者北大源（校内，速度更快）并进行下载安装。安装过程可能需要较长时间，请耐心等待。
 
 如果你不希望安装在默认的 `C:\texlive` 目录下，可以在安装过程中选择自定义安装路径。但是，该目录不应包含任何空格或其他非英文特殊字符[^3]。安装完成后，建议将 TeX Live 的 bin 目录添加到系统的环境变量中，以便在命令行中直接使用 LaTeX 命令。我们不建议安装TexLive 的 GUI 前端，因为它不易于使用。
 
@@ -105,11 +106,13 @@ LaTeX的安装冗长且复杂，我这里以最通行的TeX Live为例，介绍�
 然后，如果没有什么问题的话，VS Code 就会使用 XeLaTeX 编译器来编译你的 LaTeX 文档了。之所以使用
 
 我们非常建议关闭 LaTeX Workshop的自动清理功能，因为它会在每次编译后删除所有的辅助文件，这会导致目录、参考文献等相关功能难以正常工作——这些工作往往要求连续编译两次，因此辅助文件是很必要的。为了关闭这一功能，我们可以在用户设置json文件中添加以下配置：
+
 ```json
   "latex-workshop.latex.autoClean.run": "never",
 ```
 
 如果我们不编译很长的文章的话，可以打开自动编译功能，这样每次保存文档时，VS Code 都会自动编译 LaTeX 文档。但是对于超长文档，自动编译会导致每次习惯性按下保存时都要等待许久。我们需要按需开启或关闭自动编译功能。可以在用户设置json文件中添加以下配置：
+
 ```json
   "latex-workshop.latex.autoBuild.run": "onSave",
 ```
@@ -119,6 +122,7 @@ LaTeX的安装冗长且复杂，我这里以最通行的TeX Live为例，介绍�
 ## 初探 LaTeX
 
 话不多说，先来一个最小运行实例：
+
 ```latex
 \documentclass{article}
 
@@ -126,61 +130,65 @@ LaTeX的安装冗长且复杂，我这里以最通行的TeX Live为例，介绍�
 \author{Your Name}
 \date{\today}
 
-begin{document}
+&#92;begin{document}
 \maketitle
 Hello, \LaTeX!
-end{document}
+&#92;end{document}
 ```
 
 这个例子展示了一个最简单的 LaTeX 文档结构。我们从上到下依次解释各个部分的作用：
+
 - `\documentclass{article}`：这行代码指定了文档的类型，这里我们选择了 `article` 类型，适用于短篇文章和报告。
 - 3-5行：这些行定义了文档的标题、作者和日期信息。
-- `begin{document}` 和 `end{document}`：这两行代码标志着文档的开始和结束，所有的正文内容都应当写在这两行代码之间。
+- `&#92;begin{document}` 和 `&#92;end{document}`：这两行代码标志着文档的开始和结束，所有的正文内容都应当写在这两行代码之间。
 - `\maketitle`：这行代码用于生成标题或标题页，根据前面定义的标题、作者和日期信息。
 - `Hello, \LaTeX!`：这是文档的正文内容，这里我们简单地输出了一句问候语。
 
 我们用以下命令编译这个文档：
+
 ```bash
   xelatex example.tex
 ```
 
-当然如果用的是 VS Code 的 LaTeX Workshop 插件并开启“保存时自动编译”功能的话，就不需要手动运行上述命令了。
+当然如果用的是 VS Code 的 LaTeX Workshop 插件并开启"保存时自动编译"功能的话，就不需要手动运行上述命令了。
 
 ### 命令和环境
 
-从上文中，我们抽象出两个概念：一个是“命令”，另一个是“环境”。
+从上文中，我们抽象出两个概念：一个是"命令"，另一个是"环境"。
 
 **命令**通常以反斜杠（`\`）开头，后面跟着命令名称和可选的参数，用于执行特定的操作，例如设置标题、插入图片等。
 
 对于带有必选参数的命令而言，当必选参数是1个字符或1个命令时，可以省略大括号。例如，命令 `\a b` 等价于 `\a{b}`。但是当必选参数是多个字符时，则不能省略大括号，例如 `\a bc` 并不等价于 `\a{bc}`，而是等价于 `\a{b}c`。
 
-除此之外，有的命令还可以带一个星号（`*`）作为修饰符，以改变命令的行为。例如，命令 `section*` 用于创建一个无编号的章节标题，而 `section` 则会创建一个带编号的章节标题。星号修饰符通常用于那些需要特殊处理的命令，以提供更多的灵活性和控制。
+除此之外，有的命令还可以带一个星号（`*`）作为修饰符，以改变命令的行为。例如，带星号的章节标题命令会创建一个无编号的章节标题，而不带星号的则会创建一个带编号的章节标题。星号修饰符通常用于那些需要特殊处理的命令，以提供更多的灵活性和控制。
 
-**环境**则是由 `begin{}` 和 `end{}` 包围的一段代码块，用于定义特定的结构或格式，例如列表、表格等。在上述begin和end后的环境名参数必须相同，否则会报错。
+**环境**则是由 `&#92;begin{}` 和 `&#92;end{}` 包围的一段代码块，用于定义特定的结构或格式，例如列表、表格等。在 ``&#92;begin`` 和 ``&#92;end`` 后的环境名参数必须相同，否则会报错。
 
 这两个是 LaTeX 的核心概念，理解它们对于编写 LaTeX 文档非常重要，所有的 LaTeX 文档都是由命令和环境，以及其中的文本内容组成的。
 
 ### 正确输入符号
 
-在 LaTeX 中，大多数字符都可以直接输入，例如字母、数字和大部分标点符号。但是，有一些特殊字符在 LaTeX 中有特殊的含义，不能直接输入，否则会导致编译错误，例如# 用来在定义时指定命令参数、$ 用来表示数学模式的开始和结束、% 用来表示注释的开始等。
+在 LaTeX 中，大多数字符都可以直接输入，例如字母、数字和大部分标点符号。但是，有一些特殊字符在 LaTeX 中有特殊的含义，不能直接输入，否则会导致编译错误，例如 `\#` 用来在定义时指定命令参数、`\$` 用来表示数学模式的开始和结束、`\%` 用来表示注释的开始等。
 
 不能直接输入的符号都需要用一个命令来输入，大多数上述符号对应的命令都是在它的前面加上反斜杠。所以：
+
 **使用命令输入符号**
+
 | 输入 | `\#` | `\$` | `\%` | `\&` | `\_` | `\{` | `\}` | `\textbackslash` |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 输出 | # | $ | % | & | _ | { | } | `\` |
 
-反斜杠比较特殊，这个东西被定义为 `\textbackslash` 而不是 `\\`，因为后者在 LaTeX 中被定义为换行命令。类似的，`^`虽然可以用`\^`输入，但在文本模式下被定义为重音符号，在一些欧洲语言中用于表示字母的变音[^5]，例如 `\^e` 会输出 ê 。如果想要在文本中输入普通的符号，可以使用 `\textasciicircum` 命令。
+反斜杠比较特殊，这个东西被定义为 `\textbackslash` 而不是 `\\`，因为后者在 LaTeX 中被定义为换行命令。类似的，`^` 虽然可以用 `\^` 输入，但在文本模式下被定义为重音符号，在一些欧洲语言中用于表示字母的变音[^5]，例如 `\^e` 会输出 ê 。如果想要在文本中输入普通的符号，可以使用 `\textasciicircum` 命令。
 
-类似的，波浪号（`\~{}`）在 LaTeX 中被定义为不可断行空格，如果想要输入普通的波浪号，可以使用 `\textasciitilde` 命令。这个东西和数学中的`\sim` 是不同的，因此不能混用。
+类似的，波浪号（`\~{}`）在 LaTeX 中被定义为不可断行空格，如果想要输入普通的波浪号，可以使用 `\textasciitilde` 命令。这个东西和数学中的 `\sim` 是不同的，因此不能混用。
 
 还有一些标准键盘难以输入的符号，例如英文省略号、破折号等，也有对应的命令。例如，英文省略号可以用 `\dots` 或 `\ldots` 命令[^6]输入，破折号可以用 `--` 和 `---` 分别输入短破折号和长破折号。
 
-类似的，双引号和单引号也有特殊的输入方式：双引号用两个反引号（&#96;&#96;）与两个单引号（''），单引号用一个反引号（&#96;）与一个单引号（'）。在排版是时候不要用一对直引号来表示引号，而是要用上述的方式来输入。而中文的引号则可以直接输入，实际上在Unicode中英文引号和中文引号是一个码位的，但字体是不同的。
+类似的，双引号和单引号也有特殊的输入方式，分别是 `` `` `` 和 `''` 以及 `` ` `` 和 `'`。在排版的时候不要用一对直引号来表示引号，而是要用上述的方式来输入。而中文的引号则可以直接输入，实际上在Unicode中英文引号和中文引号是一个码位的，但字体是不同的。
 
-其他特殊符号（如`\S{}`）在 XeLaTeX 和 LuaLaTeX 中可以直接输入，因为它们支持 Unicode 字符集。但是在 pdfLaTeX 中，仍然需要使用相应的命令来输入这些符号，例如上述的 `\S` 命令。类似还有 `\P{}`（`\P`）、`\textbullet{}`（`\textbullet`）等。
+其他特殊符号（如 `\S{}`）在 XeLaTeX 和 LuaLaTeX 中可以直接输入，因为它们支持 Unicode 字符集。但是在 pdfLaTeX 中，仍然需要使用相应的命令来输入这些符号，例如上述的 `\S` 命令。类似还有 `\P{}`（`\P`）、`\textbullet{}`（`\textbullet`）等。
 
-也可以通过Unicode编码来输入一些符号，例如 `\symbol{960}` 可输出π。这种输入方式仅适用于 XeLaTeX 和 LuaLaTeX，因为它们支持 Unicode 字符集。
+也可以通过Unicode编码来输入一些符号，例如 `\symbol{960}` 可输出 π。这种输入方式仅适用于 XeLaTeX 和 LuaLaTeX，因为它们支持 Unicode 字符集。
 
 还有的符号由宏包提供，pifont、manfnt、wasysym 等宏包都提供了大量的符号，可以根据需要进行使用。
 
@@ -194,19 +202,20 @@ end{document}
 
 在pdfLaTeX 外的任何编译方式下使用ctex来处理中文文档时，中文字符之间的空格会被忽略掉，而汉字和字母、数字之间会自动留出间距。
 
-若确实想输出一个空格，使用`\ `来输出一个强制的空格，这个空格允许换行。该空格经常用于在由小写字母和句点构成的缩写的后面，例如`e.g.\ LaTeX`会输出为*e.g.\ LaTeX*。这是因为小写字母的后面的句点被认为是一句话的结束，因此后面的空格会被视为句子间距而不是单词间距，从而导致排版效果不佳。使用强制空格可以避免这种情况。
+若确实想输出一个空格，使用 `\ `（反斜杠加空格）来输出一个强制的空格，这个空格允许换行。该空格经常用于在由小写字母和句点构成的缩写的后面，例如 `e.g.\ LaTeX` 会输出为 *e.g. LaTeX*。这是因为小写字母的后面的句点被认为是一句话的结束，因此后面的空格会被视为句子间距而不是单词间距，从而导致排版效果不佳。使用强制空格可以避免这种情况。
 
-如果想输出一个不可换行的空格，可以使用`~`来实现，该空格多用于人名。
+如果想输出一个不可换行的空格，可以使用 `~` 来实现，该空格多用于人名。
 
-面对更严格的需求，例如“空一个汉字的宽度”，可以使用`\hspace{1em}`来实现，其中`1em`表示当前字体大小的宽度。类似的，`\hspace{2em}`表示空两个汉字的宽度，依此类推。
+面对更严格的需求，例如"空一个汉字的宽度"，可以使用 `\hspace{1em}` 来实现，其中 `1em` 表示当前字体大小的宽度。类似的，`\hspace{2em}` 表示空两个汉字的宽度，依此类推。
 
-由反斜杠和字母构成的命令后面如果直接跟一个空格的话，该空格会被忽略掉，因此如果想在命令后面输出一个空格的话，可以使用强制空格`\ `来实现。例如，`\LaTeX\ is great!`会输出为LaTeX\ is great!，而不是LaTeX is great!。而更常用的写法是`{\LaTeX} is great!`。
+由反斜杠和字母构成的命令后面如果直接跟一个空格的话，该空格会被忽略掉，因此如果想在命令后面输出一个空格的话，可以使用强制空格 `\ ` 来实现。例如，`\LaTeX\ is great!` 会输出为 LaTeX is great!，而不是 LaTeX is great!。而更常用的写法是 `{\LaTeX} is great!`。
 
 另，TeX 原语 `\ignorespaces` 可以用来忽略命令后面的所有空格，直到遇到下一个非空格字符为止，该命令在自定义命令和环境时非常有用。
 
 #### 换行和分段
 
 在 LaTeX 中，单个换行符不会导致输出中的换行。要在输出中插入换行，可以使用两个连续的换行符（即一个空行）来表示一个新的段落。例如：
+
 ```latex
 This is the first paragraph.
 
@@ -215,7 +224,8 @@ This is the second paragraph.
 
 这段代码会输出为两个段落。
 
-而换行则通过命令`\\`来实现，例如：
+而换行则通过命令 `\\` 来实现，例如：
+
 ```latex
 This is the first line.\\
 This is the second line.
@@ -223,18 +233,20 @@ This is the second line.
 
 换行和分段是两个不同的概念：换行是在同一段落内换到下一行，而分段则是开始一个新的段落。也就是说，换行的时候并没有分段。换行仅能在段落内部使用，所以不能在段落开头使用换行命令。
 
-还有一个换行命令`\linebreak`，该命令会使得前一行分散对其[^7]，并在当前位置强制换行。该命令在少数情况下用于消除连字符。
+还有一个换行命令 `\linebreak` ，该命令会使得前一行分散对齐[^7]，并在当前位置强制换行。该命令在少数情况下用于消除连字符。
 
 #### 强制分页
 
 有时我们需要在文档中强制分页，有三种常用的方法可以实现这一点：
-- 使用命令`\newpage`：该命令会立即开始一个新页，无论当前页是否已满。但在多栏文档中，该命令只会结束当前栏，而不会结束当前页。
-- 使用命令`\clearpage`：该命令总会切到新的页面。
-- 使用命令`\cleardoublepage`：该命令会切换到下一页，并确保新页是奇数页（右侧页）。如果当前页是奇数页，则会插入一个空白页以确保新页是奇数页。该命令通常用于双面打印的文档中，以确保章节或部分总是从右侧页开始。
+
+- 使用命令 `\newpage` ：该命令会立即开始一个新页，无论当前页是否已满。但在多栏文档中，该命令只会结束当前栏，而不会结束当前页。
+- 使用命令 `\clearpage` ：该命令总会切到新的页面。
+- 使用命令 `\cleardoublepage` ：该命令会切换到下一页，并确保新页是奇数页（右侧页）。如果当前页是奇数页，则会插入一个空白页以确保新页是奇数页。该命令通常用于双面打印的文档中，以确保章节或部分总是从右侧页开始。
 
 #### 百分号和代码注释
 
 在 LaTeX 中，百分号（%）用于表示注释的开始。任何在百分号后面的内容，直到行尾，都会被视为注释，不会被编译器处理。例如：
+
 ```latex
 This is some text. % This is a comment
 ```
@@ -242,6 +254,7 @@ This is some text. % This is a comment
 这段代码中，`This is a comment` 是注释内容，不会出现在输出的文档中。
 
 百分号有一个妙用：能够使得LaTeX忽略百分号之后、下一行最前面的所有空格，这一功能在自定义命令和环境时非常有用。例如：
+
 ```latex
 Some text here.%
     More text here.
@@ -255,27 +268,31 @@ Some text here.%
 
 #### 导言区
 
-导言区位于`begin{document}`命令之前，用于设置文档的类型、加载宏包和定义自定义命令等。导言区中的内容不会直接出现在输出的文档中，但会影响文档的整体格式和功能。
+导言区位于 `&#92;begin{document}` 命令之前，用于设置文档的类型、加载宏包和定义自定义命令等。导言区中的内容不会直接出现在输出的文档中，但会影响文档的整体格式和功能。
 
-导言区的第一行永远是`\documentclass`命令，用于指定文档的类型和相关选项。例如：
+导言区的第一行永远是 `\documentclass` 命令，用于指定文档的类型和相关选项。例如：
+
 ```latex
 \documentclass[12pt,a4paper]{article}
 ```
 
-这行代码指定了文档类型为 `article`，字体大小为12pt，纸张大小为A4。上述中括号内的内容被称作“文档类选项”，用于定制文档的外观和行为。
+这行代码指定了文档类型为 `article`，字体大小为12pt，纸张大小为A4。上述中括号内的内容被称作"文档类选项"，用于定制文档的外观和行为。
 
-在导言区中，我们还可以使用`\usepackage`命令来加载宏包，以扩展 LaTeX 的功能。例如：
+在导言区中，我们还可以使用 `\usepackage` 命令来加载宏包，以扩展 LaTeX 的功能。例如：
+
 ```latex
 \usepackage{graphicx} % 用于插入图片
 \usepackage{amsmath}  % 用于高级数学排版
 ```
 
 也可以在调用宏包时传递选项，例如：
+
 ```latex
 \usepackage[utf8]{inputenc} % 设置输入文件的编码为UTF-8
 ```
 
 宏包名称也可以一口气写多个，多个宏包之间用逗号分隔，例如：
+
 ```latex
 \usepackage{graphicx,amsmath,hyperref}
 ```
@@ -284,7 +301,7 @@ Some text here.%
 
 #### 正文区
 
-正文区位于`begin{document}`和`end{document}`命令之间，包含了文档的实际内容，如文本、图片、表格等。正文区中的内容会被编译器处理，并出现在输出的文档中。
+正文区位于 `&#92;begin{document}` 和 `&#92;end{document}` 命令之间，包含了文档的实际内容，如文本、图片、表格等。正文区中的内容会被编译器处理，并出现在输出的文档中。
 
 #### LaTeX 标准文档类
 
@@ -292,59 +309,65 @@ LaTeX 提供了几种标准的文档类，适用于不同类型的文档，最�
 
 ### 标题、标题页
 
-标题由命令`\title`、`\author`和`\date`定义，然后通过命令`\maketitle`生成。标题页通常包含文档的标题、作者和日期等信息。 例如：
+标题由命令 `\title`、`\author` 和 `\date` 定义，然后通过命令 `\maketitle` 生成。标题页通常包含文档的标题、作者和日期等信息。例如：
+
 ```latex
 \title{My First \LaTeX Document}
 \author{Alice \and Bob}
 \date{\today}
 
-begin{document}
+&#92;begin{document}
 \maketitle
-end{document}
+&#92;end{document}
 ```
 
-这段代码会生成一个标题页，显示文档的标题、作者和当前日期。多个作者可以使用`\and`命令分隔。
+这段代码会生成一个标题页，显示文档的标题、作者和当前日期。多个作者可以使用 `\and` 命令分隔。
 
-上述中的`\date`命令可以省略，如果省略的话，LaTeX 会默认使用当前日期作为文档的日期。如果不想显示日期，可以将`\date`命令设置为空，例如`\date{}`。`\today`命令用于插入当前日期，也可以在`\date`命令中使用手写的日期，例如`\date{January 1, 2024}`。
+上述中的 `\date` 命令可以省略，如果省略的话，LaTeX 会默认使用当前日期作为文档的日期。如果不想显示日期，可以将 `\date` 命令设置为空，例如 `\date{}`。`\today`命令用于插入当前日期，也可以在 `\date` 命令中使用手写的日期，例如 `\date{January 1, 2024}`。
 
 在 LaTeX 默认的设置中，article文档类的标题不单独占1页。而report和book文档类的标题则会单独占1页。如果想让article文档类的标题单独占1页，应这样做：
+
 ```latex
 \documentclass[titlepage]{article}
 ```
 
 类似的，report和book文档类如果不想让标题单独占1页，可以这样做：
+
 ```latex
 \documentclass[notitlepage]{report}
 ```
 
 而标准文档类也提供了titlepage环境，用于创建自定义的标题页。例如：
+
 ```latex
-begin{titlepage}
+&#92;begin{titlepage}
   \mbox{}\vfil % 占位符和垂直填充
-  begin{center}
+  &#92;begin{center}
     {\Huge My Custom Title Page}\\[2em]
-    {\Large Author Name}\[1em]
+    {\Large Author Name}\\[1em]
     {\large \today}
-  end{center}
-end{titlepage}
+  &#92;end{center}
+&#92;end{titlepage}
 ```
 
-上述代码会创建一个自定义的标题页，使用了`\mbox{}`命令作为占位符，并使用`\vfil`命令实现垂直居中对齐。标题、作者和日期分别使用不同的字体大小，并通过`\\[length]`命令调整行间距。上述代码是正文区的一部分，因此应放在`begin{document}`和`end{document}`之间，且使用了自定义的标题页就不应该再使用`\maketitle`命令了，否则会导致重复的标题。
+上述代码会创建一个自定义的标题页，使用了 `\mbox{}` 命令作为占位符，并使用 `\vfil` 命令实现垂直居中对齐。标题、作者和日期分别使用不同的字体大小，并通过 `\\[length]` 命令调整行间距。上述代码是正文区的一部分，因此应放在 `&#92;begin{document}` 和 `&#92;end{document}` 之间，且使用了自定义的标题页就不应该再使用 `\maketitle` 命令了，否则会导致重复的标题。
 
 titlepage的另一个特性是会把当前页的页码设置为0，下一页的页码从1开始。
 
 ### 摘要
 
 摘要是通过abstract环境[^8]来创建的。例如：
+
 ```latex
-begin{abstract}
+&#92;begin{abstract}
 This is a brief summary of the document.
-end{abstract}
+&#92;end{abstract}
 ```
 
 一般的，摘要环境应放在标题页之后、目录之前的位置。如果文档没有标题页，则应放在正文的开头部分。
 
-LaTeX 标准文档类的摘要标题是“Abstract”，如果想要更改摘要标题，可以使用`\renewcommand`命令重新定义`\abstractname`命令，例如：
+LaTeX 标准文档类的摘要标题是"Abstract"，如果想要更改摘要标题，可以使用 `\renewcommand` 命令重新定义 `\abstractname` 命令，例如：
+
 ```latex
 \renewcommand{\abstractname}{摘要}
 ```
@@ -358,68 +381,75 @@ LaTeX 标准文档类的摘要标题是“Abstract”，如果想要更改摘要
 在 LaTeX 中，章节和附录是通过特定的命令来创建和管理的，而目录则是通过命令自动生成的。
 
 **章节命令和层次**
+
 | 层次 | 命令 | 说明 | 可选编号 |
 | --- | --- | --- | --- |
 | 最高层次 | `\part` | 用于划分文档的主要部分 | 是 |
-| 次高层次 | `chapter` | 用于划分章节 | 是 |
-| 中间层次 | `section` | 用于划分节 | 是 |
-| 次低层次 | `subsection` | 用于划分小节 | 是 |
-| 最低层次 | `subsubsection` | 用于划分子小节 | 是 |
+| 次高层次 | `&#92;chapter` | 用于划分章节 | 是 |
+| 中间层次 | `&#92;section` | 用于划分节 | 是 |
+| 次低层次 | `&#92;subsection` | 用于划分小节 | 是 |
+| 最低层次 | `&#92;subsubsection` | 用于划分子小节 | 是 |
 | 段落 | `\paragraph` | 用于划分段落 | 否 |
 | 子段落 | `\subparagraph` | 用于划分子段落 | 否 |
 
-上述表格列出了 LaTeX 中常用的章节命令及其层次结构。需要注意的是，不同的文档类支持的章节层次可能有所不同。例如，article文档类不支持`chapter`命令，而book和report文档类则支持该命令；在article中`subsubsection`有编号，而在book和report中则没有编号。
+上述表格列出了 LaTeX 中常用的章节命令及其层次结构。需要注意的是，不同的文档类支持的章节层次可能有所不同。例如，article文档类不支持 `&#92;chapter` 命令，而book和report文档类则支持该命令；在article中 `&#92;subsubsection` 有编号，而在book和report中则没有编号。
 
-在默认情况下，所有带编号的章节命令都会自动生成编号，并在目录中显示相应的条目。如果不想要编号，可以在命令后面加上星号（`*`），例如`section*{Introduction}`。这种无编号的章节不会出现在目录中，除非手动添加。手动添加的方式是：
+在默认情况下，所有带编号的章节命令都会自动生成编号，并在目录中显示相应的条目。如果不想要编号，可以在命令后面加上星号（`*`），例如 `&#92;section*{Introduction}`。这种无编号的章节不会出现在目录中，除非手动添加。手动添加的方式是：
+
 ```latex
-section*{Introduction}
+&#92;section*{Introduction}
 \addcontentsline{toc}{section}{Introduction} % 手动添加到目录
 ```
 
 #### 目录
 
 目录则必须基于现有的章节命令自动生成：
+
 ```latex
 \documentclass{article}
-begin{document}
+&#92;begin{document}
 \tableofcontents % 生成目录
 
-section{some}
-section*{other}
-section{some some}
-end{document}
+&#92;section{some}
+&#92;section*{other}
+&#92;section{some some}
+&#92;end{document}
 ```
 
-上述代码编译两次得到目录内容仅包括“some”和“some some”，而不包括“other”。
+上述代码编译两次得到目录内容仅包括"some"和"some some"，而不包括"other"。
 
-在book类中包括一种特殊的分割方式：`\frontmatter`、`\mainmatter`和`\backmatter`命令。这些命令用于划分文档的不同部分，并影响页码的格式和章节编号方式。
+在book类中包括一种特殊的分割方式： `\frontmatter`、`\mainmatter`和 `\backmatter` 命令。这些命令用于划分文档的不同部分，并影响页码的格式和章节编号方式。
+
 - `\frontmatter`：用于文档的前言部分，通常包括标题页、摘要和目录等。在这一部分中，页码通常使用罗马数字（i, ii, iii, ...），章节编号通常不显示。
 - `\mainmatter`：用于文档的主体部分，包含主要内容。在这一部分中，页码通常使用阿拉伯数字（1, 2, 3, ...），章节编号会正常显示。
 - `\backmatter`：用于文档的附录和参考文献等。在这一部分中，页码继续使用阿拉伯数字，但章节编号通常不显示。
 
 #### 附录
 
-附录通过`\appendix`命令来创建，该命令会将后续的章节编号改为字母编号（A, B, C, ...）。例如：
+附录通过 `\appendix` 命令来创建，该命令会将后续的章节编号改为字母编号（A, B, C, ...）。例如：
+
 ```latex
 \appendix
-section{First Appendix}
-section{Second Appendix}
+&#92;section{First Appendix}
+&#92;section{Second Appendix}
 ```
 
-上述代码会生成两个附录，编号分别为“Appendix A”和“Appendix B”。
+上述代码会生成两个附录，编号分别为"Appendix A"和"Appendix B"。
 
 ### 标准文档类的选项
 
 标准文档类有许多可选的选项，用于定制文档的外观和行为。以下是一些常用的选项：
-- **纸张大小** 用于设置文档的纸张大小，最常用的三种是`a4paper`，`a5paper`和`b5paper`，分别对应A4、A5和B5纸张大小，默认是`letterpaper`（美国信纸大小），但如果在TexLive安装时把“缺省纸张大小”设置为A4的话，则默认是A4纸张大小。
-- **纸张方向** 默认是纵向（portrait），可以使用`landscape`选项将纸张设置为横向（长边为宽）。
-- **字体大小** 用于设置文档的基本字体大小，常用的有`10pt`、`11pt`和`12pt`，默认是`10pt`。
-- **双面打印** 用于设置文档为双面打印格式，默认是单面打印。使用`twoside`选项启用双面打印，使用`oneside`选项启用单面打印。book是默认双面打印的，而article和report默认单面打印。
-- **标题页** 用于控制标题页的显示方式。使用`titlepage`选项使标题单独占一页，使用`notitlepage`选项使标题与正文在同一页显示。article默认不单独占页，而report和book默认单独占页。
-- **章标题位置** 仅适用于report和book文档类。使用`openright`选项使章节总是从右侧页开始，使用`openany`选项允许章节从任意页开始。默认是`openright`。
-- **单双栏排版** 用于设置文档为单栏或双栏排版。使用`twocolumn`选项启用双栏排版，使用`onecolumn`选项启用单栏排版。默认是单栏排版。
+
+- **纸张大小** 用于设置文档的纸张大小，最常用的三种是 `a4paper`，`a5paper`和 `b5paper`，分别对应A4、A5和B5纸张大小，默认是 `letterpaper`（美国信纸大小），但如果在TexLive安装时把"缺省纸张大小"设置为A4的话，则默认是A4纸张大小。
+- **纸张方向** 默认是纵向（portrait），可以使用 `landscape` 选项将纸张设置为横向（长边为宽）。
+- **字体大小** 用于设置文档的基本字体大小，常用的有 `10pt`、`11pt`和 `12pt`，默认是 `10pt`。
+- **双面打印** 用于设置文档为双面打印格式，默认是单面打印。使用 `twoside` 选项启用双面打印，使用 `oneside` 选项启用单面打印。book是默认双面打印的，而article和report默认单面打印。
+- **标题页** 用于控制标题页的显示方式。使用 `titlepage` 选项使标题单独占一页，使用 `notitlepage` 选项使标题与正文在同一页显示。article默认不单独占页，而report和book默认单独占页。
+- **章标题位置** 仅适用于report和book文档类。使用 `openright` 选项使章节总是从右侧页开始，使用 `openany` 选项允许章节从任意页开始。默认是 `openright`。
+- **单双栏排版** 用于设置文档为单栏或双栏排版。使用 `twocolumn` 选项启用双栏排版，使用 `onecolumn` 选项启用单栏排版。默认是单栏排版。
 
 我们举个例子：
+
 ```latex
 \documentclass[a4paper,12pt,twoside,titlepage]{report}
 ```
@@ -436,14 +466,15 @@ section{Second Appendix}
 
 #### 行距
 
-行距极其简单，仅用一句话即可说明：在导言区使用`\linespread{factor}`命令来设置行距，其中`factor`是一个乘数，表示行距相对于默认行距的倍数。例如，`\linespread{1.5}`会将行距设置为1.5倍，适用于学术论文等需要较大行距的文档。
+行距极其简单，仅用一句话即可说明：在导言区使用 `\linespread{factor}` 命令来设置行距，其中 `factor` 是一个乘数，表示行距相对于默认行距的倍数。例如，`\linespread{1.5}` 会将行距设置为1.5倍，适用于学术论文等需要较大行距的文档。
 
 #### 字体
 
 在 LaTeX 中，有三个最基本的字体族：衬线字体（Serif）、无衬线字体（Sans Serif）和等宽字体（Monospaced）。默认情况下，正文使用衬线字体。对于这几个字体族，可以使用以下命令进行切换：
+
 - 衬线字体：`\textrm{文本}` 或 `{\rmfamily }`
 - 无衬线字体：`\textsf{文本}` 或 `{\sffamily }`
-- 等宽字体：`texttt{文本}` 或 `{\ttfamily }`
+- 等宽字体：`&#92;texttt{文本}` 或 `{\ttfamily }`
 
 在 LaTeX 中，对同一个字体族内加粗、倾斜，本质上是切换字体族内的不同字体变体。加粗和倾斜对应着字体的两个属性：字重和字形。字重表示字体的粗细程度，常见的有常规（Regular）、粗体（Bold）等；字形表示字体的样式，常见的有直立（Upright）、斜体（Italic）和倾斜体（Oblique）等。一般情况下，字重和字形之间的切换是独立的，可以任意组合，但如果不存在某个组合的字体变体，则会退化为最接近的可用变体。
 
@@ -455,6 +486,7 @@ section{Second Appendix}
 - 小型大写字形：`\textsc{文本}` 或 `{\scshape }`
 
 要叠加字体属性，可以将多个命令嵌套使用，例如：
+
 ```latex
 \textbf{\textit{Bold Italic Text}}
 {\bfseries \itshape Bold Italic Text}
@@ -462,21 +494,23 @@ section{Second Appendix}
 
 以上两种写法都会输出加粗斜体文本。
 
-LaTeX 还提供了“一键恢复正常”的命令：`\textnormal{文本}` 或 `{\normalfont }`，用于将文本恢复为默认字体样式。
+LaTeX 还提供了"一键恢复正常"的命令： `\textnormal{文本}` 或 `{\normalfont }`，用于将文本恢复为默认字体样式。
 
 !!! tip
-    在使用`{\itshape }`时，可能会导致斜体文本和后续的正常文本之间出现重合的问题。这是因为`{\itshape }`命令会影响后续文本的间距，导致斜体文本和正常文本之间的间距不正确。为了解决这个问题，可以在斜体文本后面添加一个倾斜校正命令`\/`，以确保斜体文本和后续文本之间的间距正确。
+    在使用 `{\itshape }` 时，可能会导致斜体文本和后续的正常文本之间出现重合的问题。这是因为 `{\itshape }` 命令会影响后续文本的间距，导致斜体文本和正常文本之间的间距不正确。为了解决这个问题，可以在斜体文本后面添加一个倾斜校正命令 `\/` ，以确保斜体文本和后续文本之间的间距正确。
 
-而在实际操作中，我们推荐使用具有实际意义的命令来设置字体样式，例如`\emph{文本}`用于强调文本，而不是直接使用字体属性命令。如果我们希望修改上述`\emph`命令的行为，可以通过重新定义该命令来实现，而不是直接使用字体属性命令。
+而在实际操作中，我们推荐使用具有实际意义的命令来设置字体样式，例如 `\emph{文本}` 用于强调文本，而不是直接使用字体属性命令。如果我们希望修改上述 `\emph` 命令的行为，可以通过重新定义该命令来实现，而不是直接使用字体属性命令。
 
 另一种手段是自己写一个自定义命令，例如：
+
 ```latex
 \newcommand{\important}[1]{\textbf{#1}}
 ```
 
-上述代码定义了一个名为`\important`的新命令，用于加粗文本。使用时，只需调用该命令即可，例如`\important{This is important text.}`。如果之后想要修改该命令的行为，例如改为斜体，只需修改命令定义即可，而不需要在文档中逐一修改所有使用该命令的地方，提高了文档的可维护性。
+上述代码定义了一个名为 `\important` 的新命令，用于加粗文本。使用时，只需调用该命令即可，例如 `\important{This is important text.}` 。如果之后想要修改该命令的行为，例如改为斜体，只需修改命令定义即可，而不需要在文档中逐一修改所有使用该命令的地方，提高了文档的可维护性。
 
 如希望改变整个文档的默认字体，可以这样做：
+
 ```latex
   \usepackage{fontspec} % 仅适用于XeLaTeX和LuaLaTeX
   \setmainfont{Times New Roman} % 设置正文字体
@@ -487,6 +521,7 @@ LaTeX 还提供了“一键恢复正常”的命令：`\textnormal{文本}` 或 
 但macOS中使用这类命令可能遇到一些问题，这实际上是操作系统层面的问题，你要试着找到macOS中字体的正确名称。
 
 另一方面，无衬线或等宽字体可能看起来会比衬线字体更大。这需要通过调整字号来弥补：
+
 ```latex
 \setmainfont{TeX Gyre Termes} % 衬线字体
 \setsansfont{TeX Gyre Heros}[Scale=MatchLowercase] % 无衬线字体
@@ -496,6 +531,7 @@ LaTeX 还提供了“一键恢复正常”的命令：`\textnormal{文本}` 或 
 #### 字号
 
 字号就是字体的大小。在 LaTeX 中，字号可以通过一组预定义的命令来设置，这些命令分别对应不同的字号级别。常用的字号命令如下：
+
 - `\tiny`：极小字号，是本文支持的最小字号。
 - `\scriptsize`：上下标的字号，常用于脚注和公式的上下标。
 - `\footnotesize`：脚注字号，常用于脚注
@@ -509,12 +545,14 @@ LaTeX 还提供了“一键恢复正常”的命令：`\textnormal{文本}` 或 
 
 即使我们在导言区设置了文档的基本字体大小（例如10pt、11pt或12pt），上述字号命令仍然会根据该基本字体大小进行相应的调整，不会出现normalsize比large还大的情况。
 
-如不想用这些封装好的字号命令，应使用`\fontsize{size}{skip}\selectfont`命令来设置自定义字号，其中`size`是字体大小，`skip`是行距，推荐设置为字号的1.2倍。例如：
+如不想用这些封装好的字号命令，应使用 `\fontsize{size}{skip}\selectfont` 命令来设置自定义字号，其中 `size` 是字体大小，`skip` 是行距，推荐设置为字号的1.2倍。例如：
+
 ```latex
 {\fontsize{14pt}{16pt}\selectfont ABC}
 ```
 
-倘若使用了ctex宏包或文档类，则可以使用更方便的命令`\zihao{size}`来设置字号，其中`size`是字号级别，取值范围为-8到8。例如：
+倘若使用了ctex宏包或文档类，则可以使用更方便的命令 `\zihao{size}` 来设置字号，其中 `size` 是字号级别，取值范围为-8到8。例如：
+
 ```latex
 {\zihao{4} ABC} % 四号字
 {\zihao{-4} ABC} % 小四号字
@@ -526,20 +564,22 @@ LaTeX 还提供了“一键恢复正常”的命令：`\textnormal{文本}` 或 
 
 #### 颜色
 
-要在 LaTeX 文档中使用颜色，首先需要加载`xcolor`宏包：
+要在 LaTeX 文档中使用颜色，首先需要加载 `xcolor` 宏包：
+
 ```latex
 \usepackage{xcolor}
 
 \textcolor{red}{This text is red.} % 红色文本
 ```
 
-上述代码会把“This text is red.”显示为红色。
+上述代码会把"This text is red."显示为红色。
 
 xcolor宏包定义了green、blue等多种预定义颜色，基本上常见的颜色都有对应的名称。也可以反色、混色等，具体用法请参考xcolor宏包的文档。
 
 #### 下划线等强调效果
 
-在 LaTeX 中，可以使用`ulem`宏包来实现下划线、删除线等强调效果。首先需要加载该宏包：
+在 LaTeX 中，可以使用 `ulem` 宏包来实现下划线、删除线等强调效果。首先需要加载该宏包：
+
 ```latex
 \usepackage{ulem}
 
@@ -552,14 +592,16 @@ xcolor宏包定义了green、blue等多种预定义颜色，基本上常见的�
 \dotuline{This text has a dotted underline.} % 点状下划线
 ```
 
-上述代码展示了如何使用`ulem`宏包提供的各种强调效果。
+上述代码展示了如何使用 `ulem` 宏包提供的各种强调效果。
 
-但是，使用该宏包会导致`\emph`命令的行为发生变化，默认情况下该命令会将文本设置为斜体，但加载`ulem`宏包后，该命令会将文本设置为下划线。如果不想改变`\emph`命令的行为，可以在加载`ulem`宏包时使用`normalem`选项：
+但是，使用该宏包会导致 `\emph` 命令的行为发生变化，默认情况下该命令会将文本设置为斜体，但加载 `ulem` 宏包后，该命令会将文本设置为下划线。如果不想改变 `\emph` 命令的行为，可以在加载 `ulem` 宏包时使用 `normalem` 选项：
+
 ```latex
 \usepackage[normalem]{ulem}
 ```
 
-汉字下边加的点较着重号，该符合则需要加载`xeCJKfntef`宏包（仅适用于XeLaTeX和LuaLaTeX）：
+汉字下边加的点叫着重号，该效果则需要加载 `xeCJKfntef` 宏包（仅适用于XeLaTeX和LuaLaTeX）：
+
 ```latex
 \usepackage{xeCJKfntef}
 
@@ -567,52 +609,57 @@ xcolor宏包定义了green、blue等多种预定义颜色，基本上常见的�
 \CJKunderdot{这是着重号} % 汉字下点
 ```
 
-其余命令类似于`ulem`宏包，只不过是要把命令名前加上前缀，且简写u应该展开为under。
+其余命令类似于 `ulem` 宏包，只不过是要把命令名前加上前缀，且简写u应该展开为under。
 
 该宏包还提供了一个可以在字和字之间断开的下划线用法：
+
 ```latex
 \CJKunderwave-{我}\CJKunderline-{是}\CJKunderwave-{下划线} % 可断开的下划线
 ```
 
-也可以通过在命令名后面加上星号来实现不可断开的下划线，例如`\CJKunderline*{文本}`，该下划线不会忽略标点。
+也可以通过在命令名后面加上星号来实现不可断开的下划线，例如 `\CJKunderline*{文本}`，该下划线不会忽略标点。
 
 ### 文内交叉引用
 
-在 LaTeX 中，文内交叉引用是通过`label{key}`和`ref{key}`命令来实现的。首先，在需要引用的位置使用`label{key}`命令为该位置设置一个标签（key），然后在需要引用该位置的地方使用`ref{key}`命令来引用该标签。例如：
-```latex
-section{Introduction}label{sec:intro}
+在 LaTeX 中，文内交叉引用是通过 `&#92;label{key}` 和 `&#92;ref{key}` 命令来实现的。首先，在需要引用的位置使用 `&#92;label{key}` 命令为该位置设置一个标签（key），然后在需要引用该位置的地方使用 `&#92;ref{key}` 命令来引用该标签。例如：
 
-As discussed in Section~ref{sec:intro}, ...
+```latex
+&#92;section{Introduction}&#92;label{sec:intro}
+
+As discussed in Section~&#92;ref{sec:intro}, ...
 ```
 
-上述代码中，`label{sec:intro}`为“Introduction”章节设置了一个标签，随后通过`ref{sec:intro}`引用该章节。类似的，还可以用`\pageref{key}`命令来引用标签所在的页码，用`\nameref{key}`命令来引用标签的名称[^9]。
+上述代码中，`&#92;label{sec:intro}` 为"Introduction"章节设置了一个标签，随后通过 `&#92;ref{sec:intro}` 引用该章节。类似的，还可以用 `\pageref{key}` 命令来引用标签所在的页码，用 `\nameref{key}` 命令来引用标签的名称[^9]。
 
 同样的，为了正确编译包含交叉引用的文档，通常需要编译两次，以确保所有引用都能正确解析。
 
 ### 引用超链接
 
-在 LaTeX 中，可以使用`hyperref`宏包来创建文档中的超链接。首先需要在导言区加载该宏包：
+在 LaTeX 中，可以使用 `hyperref` 宏包来创建文档中的超链接。首先需要在导言区加载该宏包：
+
 ```latex
 \usepackage{hyperref}
 ```
 
-加载该宏包后，文档中的交叉引用（如`ref`和`\pageref`）会自动转换为超链接，点击这些链接可以跳转到相应的位置。
+加载该宏包后，文档中的交叉引用（如 `&#92;ref` 和 `\pageref`）会自动转换为超链接，点击这些链接可以跳转到相应的位置。
 
 在该宏包的默认设置下，超链接的颜色为红色，并且带有边框。如果希望自定义超链接的颜色和样式，可以使用以下选项：
+
 ```latex
 \hypersetup{hidelinks, colorlinks=true, linkcolor=blue, citecolor=green, urlcolor=cyan}
 ```
 
-上述代码中，`hidelinks`选项用于隐藏超链接的边框，`colorlinks=true`选项启用彩色链接，`linkcolor`、`citecolor`和`urlcolor`选项分别设置普通链接、引用链接和URL链接的颜色。其他比较常用的选项还有pdftitle、pdfauthor等，用于设置PDF文档的元数据，但都不算很常用。
+上述代码中，`hidelinks` 选项用于隐藏超链接的边框，`colorlinks=true` 选项启用彩色链接，`linkcolor`、`citecolor`和 `urlcolor` 选项分别设置普通链接、引用链接和URL链接的颜色。其他比较常用的选项还有pdftitle、pdfauthor等，用于设置PDF文档的元数据，但都不算很常用。
 
-为了引用超链接（网址），需要使用`<网址>`或`[显示文本](网址)`命令。例如：
+为了引用超链接（网址），需要使用 `&#92;url` 命令或 `&#92;href` 命令。例如：
+
 ```latex
-url{https://www.latex-project.org/} % 直接显示网址
+&#92;url{https://www.latex-project.org/} % 直接显示网址
 
-href{https://www.latex-project.org/}{LaTeX Project} % 显示自定义文本
+&#92;href{https://www.latex-project.org/}{LaTeX Project} % 显示自定义文本
 ```
 
-上述代码会创建两个超链接，第一个显示完整的网址，第二个显示自定义的文本“LaTeX Project”。
+上述代码会创建两个超链接，第一个显示完整的网址，第二个显示自定义的文本"LaTeX Project"。
 
 该宏包必须在导言区的最后加载，以确保不出现兼容性问题。
 
@@ -621,6 +668,7 @@ href{https://www.latex-project.org/}{LaTeX Project} % 显示自定义文本
 参考文献的管理和排版在 LaTeX 中通常通过BibTeX、BibLaTeX或natbib等宏包来实现。这里我们介绍使用BibLaTeX宏包来管理参考文献的方法，也是笔者比较习惯的方式。
 
 为了管理参考文献，首先我们要写一个.bib文件，该文件包含了所有参考文献的条目。每个条目都有一个唯一的引用键（cite key），用于在文档中引用该条目。例如，下面是一个简单的.bib文件内容：
+
 ```latex
 @book{lamport1994latex,
   title={LaTeX: A Document Preparation System},
@@ -630,33 +678,36 @@ href{https://www.latex-project.org/}{LaTeX Project} % 显示自定义文本
 }
 ```
 
-上述代码定义了一个书籍类型的参考文献条目，引用键为`lamport1994latex`。
+上述代码定义了一个书籍类型的参考文献条目，引用键为 `lamport1994latex`。
 
-在文档中引用参考文献时，可以使用`\cite{cite key}`命令。例如：
+在文档中引用参考文献时，可以使用 `\cite{cite key}` 命令。例如：
+
 ```latex
 \documentclass{article}
 \usepackage[backend=biber,style=numeric]{biblatex}
 \addbibresource{references.bib} % 引入.bib文件
 
-begin{document}
+&#92;begin{document}
 This is a reference to Lamport's book \cite{lamport1994latex}.
 
 % 下列命令常常放在文档末尾
 \printbibliography % 打印参考文献列表
-end{document}
+&#92;end{document}
 ```
 
 编译包含参考文献的文档时，需要按照以下顺序进行编译：
-```latex
+
+```bash
 xelatex mydocument.tex
 biber mydocument
 xelatex mydocument.tex
 xelatex mydocument.tex
 ```
 
-biblatex 的参考文献格式通过宏包选项的`style`参数来设置，常用的格式有numeric（数字编号）、authoryear（作者-年份）等。
+biblatex 的参考文献格式通过宏包选项的 `style` 参数来设置，常用的格式有numeric（数字编号）、authoryear（作者-年份）等。
 
-也可以分别制定参考文献列表的格式和引用的格式，分别使用`citestyle`和`bibstyle`参数。例如：
+也可以分别制定参考文献列表的格式和引用的格式，分别使用 `citestyle` 和 `bibstyle` 参数。例如：
+
 ```latex
 \usepackage[backend=biber,citestyle=authoryear,bibstyle=numeric]{biblatex}
 ```
@@ -668,34 +719,38 @@ biblatex 的参考文献格式通过宏包选项的`style`参数来设置，常�
 ### ctex文档类
 
 ctex文档类包括ctexart、ctexrep和ctexbook，分别对应article、report和book文档类。使用这些文档类可以方便地创建中文文档，而无需手动配置中文支持。例如：
+
 ```latex
 \documentclass{ctexart}
-begin{document}
+&#92;begin{document}
 你好，世界！
-end{document}
+&#92;end{document}
 ```
 
 上述代码创建了一个简单的中文文档，使用了ctexart文档类。
 
 这几个文档类有着一些特定的选项，用于定制中文文档的外观和行为。例如：
-- **字体设置** 可以通过`fontset`选项来指定中文字体集，例如`fontset=windows`、`fontset=mac`等，分别对应Windows和Mac系统的默认中文字体。
-- **默认字号** 可以通过`zihao`选项来设置默认字号，例如`zihao=4`表示四号字，`zihao=-4`表示小四号字。
-- **标点样式** 可以通过`punctstyle`选项来设置中文标点的样式，例如`punctstyle=kaiming`表示使用开明体的标点样式。
+
+- **字体设置** 可以通过 `fontset` 选项来指定中文字体集，例如 `fontset=windows`、`fontset=mac`等，分别对应Windows和Mac系统的默认中文字体。
+- **默认字号** 可以通过 `zihao` 选项来设置默认字号，例如 `zihao=4` 表示四号字，`zihao=-4` 表示小四号字。
+- **标点样式** 可以通过 `punctstyle` 选项来设置中文标点的样式，例如 `punctstyle=kaiming` 表示使用开明体的标点样式。
 
 标点样式包括quanjiao（全角标点）、kaiming（开明体标点）、banjiao（半角标点）、CCT（标点符号宽度略小于一个汉字宽度）和plain（不做任何处理）。默认是quanjiao。
 
 ### ctex宏包
 
 ctex宏包可以在任何文档类中使用，以支持中文排版。例如：
+
 ```latex
 \documentclass{article}
 \usepackage{ctex}
-begin{document}
+&#92;begin{document}
 你好，世界！
-end{document}
+&#92;end{document}
 ```
 
 上面的代码与使用ctex文档类的效果几乎相同，会开启中文排版方案：
+
 - 默认字号为五号字；
 - 行距变为标准文档类默认行距的1.3倍；
 - 汉化文档的标题名称，例如摘要、目录等；
@@ -705,6 +760,7 @@ end{document}
 但不会把标题格式等改为中文文档类的格式。
 
 不使用上述功能的话，可以在调用ctex宏包时传递相应的选项来禁用这些功能。例如：
+
 ```latex
 \usepackage[scheme=plain]{ctex}
 ```
@@ -712,6 +768,7 @@ end{document}
 上述代码禁用了ctex宏包的中文排版方案，恢复为标准文档类的默认设置。这种场景仅仅适用于输入少量汉字的英文文档。
 
 如果希望使用中文文档类的标题格式，则应：
+
 ```latex
   \usepackage[heading=true]{ctex}
 ```
@@ -720,7 +777,8 @@ end{document}
 
 ### 设置标题样式
 
-ctex宏集提供了多种预定义的标题样式，可以通过`\ctexset`命令来设置。例如：
+ctex宏集提供了多种预定义的标题样式，可以通过 `\ctexset` 命令来设置。例如：
+
 ```latex
 \ctexset{section={
   format+=\bfseries, % 加粗章节标题
@@ -729,13 +787,14 @@ ctex宏集提供了多种预定义的标题样式，可以通过`\ctexset`命令
 }}
 ```
 
-上述代码将章节标题设置为加粗，章节名称格式为“第X章”，章节编号格式为中文数字。类似的，可以设置节、小节等标题样式。
+上述代码将章节标题设置为加粗，章节名称格式为"第X章"，章节编号格式为中文数字。类似的，可以设置节、小节等标题样式。
 
-ctex中文文档类把标题分成前后两部分：名称和标题，例如“第1章 绪论”中，“第1章”是名称，“绪论”是标题。这些样式整体上由format设置，详见ctex文档。
+ctex中文文档类把标题分成前后两部分：名称和标题，例如"第1章 绪论"中，"第1章"是名称，"绪论"是标题。这些样式整体上由format设置，详见ctex文档。
 
 ### 中文字体
 
 在中文文档类中，我们可以选择不同的中文字体来排版文档。ctex宏集预定义了一些常用的中文字体库，例如：
+
 - windows：适用于Windows系统，使用微软雅黑、中易宋体等字体。
 - mac：适用于Mac系统，使用苹方、华文细黑等字体。
 - ubuntu：适用于思源黑体、思源宋体、文鼎楷体等字体。
@@ -744,7 +803,8 @@ ctex中文文档类把标题分成前后两部分：名称和标题，例如“�
 - founder：使用方正字体库，适用于需要方正字体的文档。但字体需要下载，且部分非免费商用。
 - none：不设置中文字体，使用系统默认字体。
 
-可以通过在导言区使用`\setCJKmainfont`、`\setCJKsansfont`和`\setCJKmonofont`命令来分别设置中文的衬线字体、无衬线字体和等宽字体。例如：
+可以通过在导言区使用 `\setCJKmainfont`、`\setCJKsansfont`和 `\setCJKmonofont` 命令来分别设置中文的衬线字体、无衬线字体和等宽字体。例如：
+
 ```latex
 \setCJKmainfont{SimSun} % 设置中文衬线字体为宋体
 \setCJKsansfont{SimHei} % 设置中文无衬线字体为黑体
@@ -752,11 +812,13 @@ ctex中文文档类把标题分成前后两部分：名称和标题，例如“�
 ```
 
 需要注意的是，如果使用上述命令设置字体，则需要确保所指定的字体已经安装在系统中，否则会导致编译错误；且需要设置宏集中的字体库为none，否则会得到一条警告信息。
+
 ```latex
   \usepackage[fontset=none]{ctex}
 ```
 
 也可以使用更多中文字体：
+
 ```latex
 \newCJKfontfamily\CJKHeavy{Source Han Serif SC Heavy} % 定义一个新的中文字体命令
 {\CJKHeavy 这是使用自定义字体的文本。}
@@ -768,6 +830,14 @@ ctex中文文档类把标题分成前后两部分：名称和标题，例如“�
 [^4]: 张庭瑄同志说该插件有bug，但笔者使用并未发现问题，同学们见仁见智了。
 [^5]: 这个太多了，不展开讲了。
 [^6]: 对于句号前出现的省略号，直接用就行。但这也会导致英文省略号在正文中的前后间距会不对称，因而推荐的解决方案是把这两个东西都用在数学模式中。
-[^7]: 也就是Word中的“两端对齐”效果，上一行会被拉伸以填满整行。
+[^7]: 也就是Word中的"两端对齐"效果，上一行会被拉伸以填满整行。
 [^8]: 该环境在book文档类中不可用。
 [^9]: 需要加载nameref宏包。
+
+<!-- handout-sync-source
+source_type: latex
+source_url: https://github.com/ZangXuanyi/getting-started-handout
+source_branch: main
+source_commit: e1f6c5d23fb730d144f0261027c515ca0971ffc6
+source_commit_short: e1f6c5d
+-->
