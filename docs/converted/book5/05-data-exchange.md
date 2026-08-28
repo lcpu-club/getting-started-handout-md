@@ -114,6 +114,17 @@ CALL calculate_gpa(12345);
 
 当然，我们大可以自己创建自己的"数据交换格式"，但这样做会带来兼容性和可维护性的问题，因此通常建议使用已有的标准化格式。
 
+| 格式 | 嵌套能力 | 可读性 | 典型用途 | Python 标准库/常用库 |
+| --- | --- | --- | --- | --- |
+| JSON | 对象、数组 | 高 | Web API、配置、跨语言交换 | `json` |
+| XML | 任意层级、属性和标签 | 中 | 文档、企业系统、严格 schema | `xml.etree.ElementTree` |
+| CSV | 二维表格 | 高 | 表格数据导入导出 | `csv` |
+| YAML | 任意层级 | 很高 | 配置文件、DevOps | `PyYAML` |
+| TOML | 表格和嵌套表格 | 很高 | 项目配置（如 `pyproject.toml`） | `tomllib` / `tomli` |
+| INI | 节和键值对 | 高 | 简单应用配置 | `configparser` |
+
+这张表用于快速选型；实际使用时，还要结合目标工具链、兼容性和数据规模判断。
+
 ### JSON
 
 JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，易于人类阅读和编写，同时也易于机器解析和生成。JSON使用键值对的形式来表示数据，支持嵌套结构。例如，下面是一个简单的JSON示例：
@@ -175,8 +186,8 @@ XML（eXtensible Markup Language）是一种用于表示结构化数据的标记
 
 ```xml
 <person>
-  <name="Alice" />
-  <age="30" />
+  <name value="Alice" />
+  <age value="30" />
 </person>
 ```
 

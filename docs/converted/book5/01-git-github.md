@@ -366,7 +366,7 @@ VS Code为Git提供了一个视窗化界面，可以方便地进行版本控制�
 
 ### GitHub界面指南
 
-!!! tip
+!!! tip "提示"
     GitHub是美国的网站，它也并没有提供任何其他语言界面，因此只有英文界面。
 
     如果阅读英文有困难，可以使用浏览器的翻译插件来帮助我们理解界面内容，也可以使用这个插件：[GitHub Chinese](https://github.com/maboloshi/github-chinese)。当然，后者需要油猴（Tampermonkey）等脚本管理器的支持。
@@ -465,7 +465,7 @@ git merge origin/main
 
 这样可以更好地控制合并过程，避免自动合并带来的问题。
 
-!!! tip
+!!! tip "提示"
     `origin/main` 可以初步理解为远程仓库 origin 上的 main 分支。但是，它和真正的"分支"并不完全一样。它是一个特殊的引用，指向远程仓库 main 分支的最新提交。当我们使用 `git fetch` 命令拉取远程仓库的代码时，Git 会更新这个引用，使其指向远程仓库 main 分支的最新提交。
 
     这个引用是在本地且只读的，永远忠实地反映远程仓库的上一次状态，故而checkout到这个分支上会进入分离头模式。
@@ -488,7 +488,7 @@ git push origin main
 git push -f origin main
 ```
 
-!!! warning
+!!! warning "警告"
     强制推送会覆盖远程仓库的代码，可能会导致其他工作丢失，在实际工作中可能触发真人线下快打或提桶跑路CG。所以，务必谨慎使用强制推送，确保你知道你在做什么，并且已经备份了重要的代码。
 
 ### 更改关联
@@ -658,29 +658,41 @@ git push origin main
 
 **提出PR** 现在我们是协助别人开发。我们Fork了一个仓库，在本地做出了一些修改，现在希望把这些修改合并到原仓库中。此时，我们有两个方法。
 
-第一个方法，是使用GitHub（或者其他平台）的界面来创建PR。我们先把修改推送到自己的远程仓库中，然后在GitHub上创建一个PR，选择目标分支和源分支，填写PR的标题和描述，最后提交PR。
+=== "GitHub 网页"
 
-另一个方法，是使用github-cli来创建PR。我们先把修改推送到自己的远程仓库中，然后使用以下命令来创建PR：
+    先把修改推送到自己的远程仓库中，然后在 GitHub 上创建一个 PR，选择目标分支和源分支，填写 PR 的标题和描述，最后提交 PR。
 
-```bash
-gh pr create --title "feat: something" --body "" --base main
-```
+=== "`gh` CLI"
 
-这样会在当前分支上创建一个 PR，标题为 "feat: something"，描述为空，目标分支为 main。如果希望合并到别人的仓库中，可以使用以下命令：
+    先把修改推送到自己的远程仓库中，然后使用以下命令来创建 PR：
 
-```bash
-gh pr create --title "feat: something" --body "" --base main --repo owner/repo
-```
+    ```bash
+    gh pr create --title "feat: something" --body "" --base main
+    ```
+
+    这样会在当前分支上创建一个 PR，标题为 "feat: something"，描述为空，目标分支为 main。如果希望合并到别人的仓库中，可以使用以下命令：
+
+    ```bash
+    gh pr create --title "feat: something" --body "" --base main --repo owner/repo
+    ```
 
 **合并PR** 当我们是PR的维护者时，我们需要审查PR，并决定是否合并。如果PR没有问题，我们可以直接在GitHub上点击"Merge"按钮来合并PR。我们非常建议使用变基策略或压缩提交的方式来合并PR，这样可以保持提交历史的整洁。如果我们使用github-cli来合并PR，可以使用以下命令：
 
-```bash
-gh pr merge --squash --delete-branch
-```
+=== "GitHub 网页"
 
-这样会将 PR 合并到目标分支，并且使用 squash 的方式合并（即把多个提交压缩成一个提交），最后删除临时分支。有时候可能无需删除该临时分支（例如这个分支是别人的）。
+    审查 PR 后，直接在 GitHub 上点击 "Merge" 按钮即可合并。建议使用变基或压缩提交的方式，保持提交历史整洁。
 
-如果想要采用变基的方式来合并PR，则将上述命令中的 `--squash` 替换为 `--rebase`。变基会比合并更好地保持历史的线性，但不直观。
+=== "`gh` CLI"
+
+    使用以下命令以 squash 方式合并 PR：
+
+    ```bash
+    gh pr merge --squash --delete-branch
+    ```
+
+    这样会将 PR 合并到目标分支，并且使用 squash 的方式合并（即把多个提交压缩成一个提交），最后删除临时分支。有时候可能无需删除该临时分支（例如这个分支是别人的）。
+
+    如果想要采用变基的方式来合并 PR，则将上述命令中的 `--squash` 替换为 `--rebase`。变基会比合并更好地保持历史的线性，但不直观。
 
 在实际的仓库中，务必保证主要分支提交历史的线性。具体采用变基还是压缩，还是不压缩，取决于维护者的偏好和团队的习惯。无论如何，保持提交历史的整洁和可读性是非常重要的。
 

@@ -69,7 +69,7 @@ gcc -g -o your_program your_program.c
 
 `ulimit -c unlimited` 命令可以设置 core dump 文件的大小限制为无限制。然后运行崩溃的程序，等着程序再崩溃一次。然后运行 `gdb ./your_program core`。这会加载 core dump 文件，并且可以使用 `bt` 命令查看函数调用栈，使用 `info locals` 查看局部变量等。
 
-!!! note
+!!! note "注意"
     你的程序崩溃了，但是没见到 core 文件？这可能是因为在你的系统上，core 文件是由 systemd 管理的。可以尝试 `coredumpctl debug your_program` 来调试 core，systemd 会自动帮你使用 gdb 等调试器打开 core 文件。
 
 #### 内存泄漏

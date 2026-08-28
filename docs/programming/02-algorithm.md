@@ -3,10 +3,10 @@ icon: material/database
 ---
 # 常见算法
 
-!!! warning
+!!! warning "警告"
     该文章仍未经过正式校对
 
-!!! note 作者
+!!! note "作者"
     本文作者：[username](https://github.com/username)
 
 在掌握了算法复杂度和 STL 的基础知识后，我们来学习几种最基础但非常重要的算法思想。这些算法虽然简单，但在解决实际问题时却非常实用。

@@ -3,10 +3,10 @@ icon: material/database
 ---
 # 算法基础知识
 
-!!! warning
+!!! warning "警告"
     该文章仍未经过正式校对
 
-!!! note 作者
+!!! note "作者"
     本文作者：[username](https://github.com/username)
 
 算法是解决问题的步骤和方法，而理解算法的效率对于编写高性能程序至关重要。在本节中，我们将介绍算法复杂度的基本概念，以及如何使用 C++ STL（标准模板库）来简化算法实现。

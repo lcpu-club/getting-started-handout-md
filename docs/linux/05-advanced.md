@@ -3,7 +3,7 @@ icon: fontawesome/solid/code
 ---
 # Linux 高级知识
 
-!!! note 作者
+!!! note "作者"
     本文作者列表：
 
     - [wheatfox](https://github.com/enkerewpo) (wheatfox17@icloud.com)
@@ -60,7 +60,7 @@ screen -r test # 如果会话名唯一，可以只用会话名
 
 更多命令请参考 screen 的 manpage（`man screen`）。
 
-!!! tip
+!!! tip "提示"
     1. screen 最常用的一个场景是通过 ssh 连接远程服务器后，通过 screen 创建一个会话，然后在这个会话中运行编译或者机器学习任务，然后通过 screen 的 detach 功能将当前会话分离出来，这样退出 ssh 不会导致任务中断。
     2. screen 有时候也可以作为串口交互软件使用，例如通过 `screen /dev/ttyUSB0 115200` 打开一个波特率为 115200 的串口设备。Linux 下还可以使用 `minicom` 、`picocom` 以及图形化的 `gtkterm` 等软件来作为串口交互软件。
 
@@ -130,7 +130,7 @@ screen 的在线 manpage：[screen(1) — Linux manual page](https://man7.org/li
 
 ### Rust For Linux
 
-!!! note
+!!! note "注意"
     1. Rust-for-Linux 官方网站： <https://rust-for-linux.com>
     2. Rust-for-Linux 内核文档： <https://docs.kernel.org/rust/index.html>
 
@@ -141,9 +141,9 @@ screen 的在线 manpage：[screen(1) — Linux manual page](https://man7.org/li
 [^1]: McCanne, Steven and Van Jacobson. “The BSD Packet Filter: A New Architecture for User-level Packet Capture.” USENIX Winter (1993)
 
 
-!!! note
+!!! note "注意"
     1. eBPF 官方网站： <https://ebpf.io>
     2. eBPF 内核文档： <https://docs.kernel.org/bpf/index.html>
 
-!!! note
+!!! note "注意"
     如果你想知道更多关于 Linux 内核的知识，可以参考 [Linux内核官方文档](https://docs.kernel.org/)。

@@ -206,7 +206,7 @@ struct TreeNode {
     int data;
     std::weak_ptr<TreeNode> father; // 指向父节点的弱指针，防止循环引用
     std::vector<std::shared_ptr<TreeNode>> children; // 多个子节点
-    TreeNode(int val) : data(val), left(nullptr), right(nullptr) {}
+    TreeNode(int val) : data(val) {}
 };
 ```
 
