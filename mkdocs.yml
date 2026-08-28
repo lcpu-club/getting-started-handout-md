@@ -25,7 +25,9 @@ theme:
   features:
     - content.action.edit
     - content.action.view
+    - content.code.annotate
     - content.code.copy
+    - content.tabs.link
     - content.tooltips
     - navigation.footer
     - navigation.indexes
@@ -40,10 +42,20 @@ markdown_extensions:
   - attr_list
   - def_list
   - footnotes
+  - md_in_html
+  - tables
+  - pymdownx.betterem
+  - pymdownx.blocks.caption
+  - pymdownx.caret
+  - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
       emoji_index: !!python/name:zensical.extensions.emoji.twemoji
       emoji_generator: !!python/name:zensical.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -51,6 +63,17 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.inlinehilite
   - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: lcpu-club
+      repo: getting-started-handout-md
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
   - pymdownx.arithmatex:
       generic: true
   - abbr
@@ -77,17 +100,6 @@ nav:
       - converted/book3/index.md
       - 终端101: converted/book3/01-shell-101.md
       - 开始使用 Linux: converted/book3/02-linux.md
-  - 开发环境：让代码能编译能跑:
-      - converted/book4/index.md
-      - 正式踏入编程世界: converted/book4/01-coding.md
-      - C语言入门: converted/book4/02-c-guidance.md
-      - 从C到C++: converted/book4/03-cpp-guidance-1.md
-      - C++进阶: converted/book4/03-cpp-guidance-2.md
-      - 现代C++特性: converted/book4/031-modern-cpp.md
-      - C++真理大讨论: converted/book4/03-cpp-guidance-3.md
-      - C系工程概述: converted/book4/04-cpp-project.md
-      - Python高速入门: converted/book4/05-python-guidance.md
-      - Python常用包: converted/book4/06-python-packages.md
   - 实用主义编程：写出更好的代码:
       - converted/book5/index.md
       - Git与版本控制: converted/book5/01-git-github.md
@@ -107,10 +119,7 @@ nav:
       - 文字排版：Markdown 和 Typst: converted/tools/01-text-processing.md
       - LaTeX: converted/tools/02-latex.md
       - LaTeX 进阶: converted/tools/03-latex-advanced.md
-  - 延伸进阶阅读:
-      - converted/advanced/index.md
-      - 现代高性能并发编程：异步、多进程和多线程: converted/advanced/multitask.md
-      - 神经网络和机器学习: converted/advanced/nn.md
+  - 同步状态: converted/sync-status.md
   - 后记: converted/postscript.md
 
 extra_css:
