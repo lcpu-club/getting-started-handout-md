@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "python3 -m pip install --disable-pip-version-check zensical==0.0.57 && zensical build --clean",
+  "outputDirectory": "site",
+  "framework": null
+}
