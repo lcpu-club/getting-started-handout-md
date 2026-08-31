@@ -1,5 +1,12 @@
 site_name: PKU计算机基础能力手册
 repo_url: https://github.com/lcpu-club/getting-started-handout-md
+copyright: >
+  文字内容采用
+  <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" target="_blank" rel="noopener">CC BY 4.0</a>
+  协议，代码采用
+  <a href="https://www.gnu.org/licenses/lgpl-3.0.html" target="_blank" rel="noopener">LGPL</a>
+  协议 ｜ 原书 PDF：
+  <a href="https://github.com/ZangXuanyi/getting-started-handout/releases/latest" target="_blank" rel="noopener">ZangXuanyi/getting-started-handout</a>
 theme:
   name: zensical
   variant: modern
